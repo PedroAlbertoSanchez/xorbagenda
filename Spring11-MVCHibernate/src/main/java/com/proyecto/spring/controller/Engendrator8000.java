@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.proyecto.spring.model.Busqueda;
+import com.proyecto.spring.model.Persona;
 import com.proyecto.spring.services.UserService;
 
 @Controller
@@ -32,11 +33,10 @@ public class Engendrator8000 {
 
 	@RequestMapping(value = "/busqueda", method = RequestMethod.POST)
 	public ModelAndView busqueda(@ModelAttribute Busqueda busqueda) {
-		// List<Object> listaUsuarios =
-		// userService.busquedaUsuario(busqueda.getBusqueda());
-		System.out.println("Entrando en el metodo");
+		List<Persona> listaPersonas=  userService.busquedaPersona(busqueda.getBusqueda());
+		System.out.println("Entrando en el metodo y buscando" + busqueda.getBusqueda());
 		ModelAndView model = new ModelAndView("Resultados");
-		//model.addObject("listaUsuarios", listaUsuarios);
+		model.addObject("listaPersonas", listaPersonas);
 		return model;
 	}
 

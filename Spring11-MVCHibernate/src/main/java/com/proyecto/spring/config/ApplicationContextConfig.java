@@ -16,6 +16,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.proyecto.spring.model.Categoria;
+import com.proyecto.spring.model.Departamento;
+import com.proyecto.spring.model.Direccione;
+import com.proyecto.spring.model.Empleado;
+import com.proyecto.spring.model.Persona;
+import com.proyecto.spring.model.Telefono;
+
 
 
 
@@ -44,7 +51,7 @@ public class ApplicationContextConfig {
 	    public DataSource getDataSource() {
 	    	BasicDataSource dataSource = new BasicDataSource();
 	    	dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	    	dataSource.setUrl("jdbc:mysql://localhost:3306/usersdb");
+	    	dataSource.setUrl("jdbc:mysql://localhost:3306/agenda");
 	    	dataSource.setUsername("root");
 	    	dataSource.setPassword("1111");
 	    	
@@ -64,7 +71,13 @@ public class ApplicationContextConfig {
 	    public SessionFactory getSessionFactory(DataSource dataSource) {
 	    	LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 	    	sessionBuilder.addProperties(getHibernateProperties());
-	    	//sessionBuilder.addAnnotatedClasses(User.class);   // replicar linea por cada clase adicional
+	    	sessionBuilder.addAnnotatedClasses(Persona.class);   // replicar linea por cada clase adicional
+	    	sessionBuilder.addAnnotatedClasses(Telefono.class);
+	    	sessionBuilder.addAnnotatedClasses(Empleado.class);
+	    	sessionBuilder.addAnnotatedClasses(Direccione.class);
+	    	sessionBuilder.addAnnotatedClasses(Departamento.class);
+	    	sessionBuilder.addAnnotatedClasses(Categoria.class);
+	    	// sessionBuilder.addAnnotatedClasses(Busqueda.class);
 	    	return sessionBuilder.buildSessionFactory();
 	    }
 	    

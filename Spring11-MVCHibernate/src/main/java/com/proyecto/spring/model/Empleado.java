@@ -37,7 +37,7 @@ public class Empleado implements Serializable {
 	private Departamento departamento;
 
 	//bi-directional many-to-one association to Persona
-	@OneToOne (mappedBy="empleado")
+	@OneToMany (mappedBy="empleado")
 	private List<Persona> personas;
 
 	public Empleado() {

@@ -2,10 +2,10 @@ package com.proyecto.spring.services;
 
 import java.util.List;
 
-import com.proyecto.spring.model.Usuario;
+import com.proyecto.spring.model.Persona;
 
 public interface UserService {
 	
-	public List<Usuario> busquedaUsuario(String string);
+	public List<Persona> busquedaPersona(String string);
 
 }

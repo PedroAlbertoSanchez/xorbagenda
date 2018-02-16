@@ -14,7 +14,7 @@
 <body>
 
  <div id="contenedor">
-            <h2>Paso 1 - Indicar usuario</h2>
+            <h2>Buscar Empleado</h2>
 
             <form:form action="busqueda" method="POST" modelAttribute="busqueda">
                
