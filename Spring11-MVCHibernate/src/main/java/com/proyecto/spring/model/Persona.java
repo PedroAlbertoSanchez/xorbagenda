@@ -36,7 +36,7 @@ public class Persona implements Serializable {
 	private List<Direccione> direcciones;
 
 	//bi-directional many-to-one association to Empleado
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="idEmpleado")
 	private Empleado empleado;
 
