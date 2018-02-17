@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,15 +32,44 @@ public class DAO implements IDAO{
 	@Override
 	@Transactional
 	public List<Persona> busquedaPersona(String string) {
-		System.out.println("aahahgg ");
-		List<Persona> personaList = (List<Persona>) sessions.getCurrentSession()
-		.createCriteria(Persona.class)
-		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-		//Query miQuery = sessions.getCurrentSession().createQuery("");
-		//@SuppressWarnings("unchecked")
-		//List<Persona> personaList = miQuery.list();
-		//sessions.openSession();
-		//Query miQuery = sessions.getNamedQuery("Persona.FindAll");
+		System.out.println(string);
+		
+		 Session session = sessions.openSession();
+		
+		
+		 // HQL
+		 Query query = session.createQuery("from Persona where nombre LIKE :busqueda OR apellido1 LIKE :busqueda OR apellido2 LIKE :busqueda");
+	        query.setString("busqueda", string);
+	        //devuelve el objeto. Si no hay devuelve null
+	        @SuppressWarnings("unchecked")
+			List<Persona> personaList =  query.list();
+		 
+		 /* CRITERIA
+		Criteria criteria = session.createCriteria(Persona.class)
+                .add(Restrictions.like("nombre", string));
+		@SuppressWarnings("unchecked")
+		List<Persona> personaList = criteria.list();
+		
+		Criteria criteria2 = session.createCriteria(Persona.class);
+		criteria2.add(Restrictions.like("apellido1", string));
+		List<Persona> personaList2 = criteria2.list();
+		
+		Criteria criteria3 = session.createCriteria(Persona.class)
+                .add(Restrictions.like("apellido2", string));
+		List<Persona> personaList3 = criteria3.list();
+		personaList.addAll(personaList2);
+		personaList.addAll(personaList3);
+       */
+		
+		/*NAMED queries
+		Session session = sessions.openSession();
+		Query query = session.getNamedQuery("Persona.findbyNombre");
+		query.setString("Nombre",string);
+		List<Persona> personaList = query.list();
+				//(List<Persona>) 
+		*/
+		
+		
 		return personaList;
 	}
 
