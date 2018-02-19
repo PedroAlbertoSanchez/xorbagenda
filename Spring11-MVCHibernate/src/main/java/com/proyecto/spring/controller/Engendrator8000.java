@@ -28,7 +28,7 @@ public class Engendrator8000 {
 		try {
 			logger = LogManager.getLogger(Engendrator8000.class);
 		} catch (Throwable e) {
-			logger.error("No funciona Logger " + e.getStackTrace());
+			  System.out.println("Logger no funciona");
 
 		}
 	}
