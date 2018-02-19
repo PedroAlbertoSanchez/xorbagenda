@@ -17,7 +17,36 @@
             <PatternLayout pattern="[%5p] - %c{1}:%L %d{yyyy-MM-dd HH:mm:ss} - %m%n" />
         </Console>
     </Appenders>
+    
+    
+    
     <Loggers>
+    
+    
+     <!--
+     
+     ********esto lo vi en internet, pero al parecer no tiene nada que ver***** 
+      Log everything in hibernate
+    <Logger name="org.hibernate" level="info" additivity="false">
+      <AppenderRef ref="Console" />
+    </Logger>
+
+    Log SQL statements
+    <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File" />
+    </Logger>
+
+    Log JDBC bind parameters
+    <Logger name="org.hibernate.type.descriptor.sql" level="trace" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File" />
+    </Logger>
+      
+      
+     -->
+
+
      
         <!-- here we restrict the log level by package 
         <Logger name="com.rrivero.log" level="info" additivity="true">

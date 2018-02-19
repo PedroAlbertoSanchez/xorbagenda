@@ -2,7 +2,6 @@ package com.proyecto.spring.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -19,24 +18,36 @@ import com.proyecto.spring.services.UserService;
 
 @Controller
 public class Engendrator8000 {
-	
 
 	@Autowired
 	private UserService userService;
+
+	private static Logger logger;
+
+	static {
+		try {
+			logger = LogManager.getLogger(Engendrator8000.class);
+		} catch (Throwable e) {
+			logger.error("No funciona Logger " + e.getStackTrace());
+
+		}
+	}
 
 	@RequestMapping("/")
 	public ModelAndView handleRequest(Busqueda busqueda) throws Exception {
 		ModelAndView model = new ModelAndView("Index");
 		model.addObject("busqueda", busqueda);
-		return model;
+		logger.info("Finaliza Metodo: RequestMapping </>");
+		return model;	
 	}
 
 	@RequestMapping(value = "/busqueda", method = RequestMethod.POST)
 	public ModelAndView busqueda(@ModelAttribute Busqueda busqueda) {
-		List<Persona> listaPersonas=  userService.busquedaPersona(busqueda.getBusqueda());
-		System.out.println("Entrando en el metodo y buscando" + busqueda.getBusqueda());
+		List<Persona> listaPersonas = userService.busquedaPersona(busqueda.getBusqueda());
+		logger.info("Entrando en el metodo y buscando a: " + busqueda.getBusqueda());
 		ModelAndView model = new ModelAndView("Resultados");
 		model.addObject("listaPersonas", listaPersonas);
+		
 		return model;
 	}
 
