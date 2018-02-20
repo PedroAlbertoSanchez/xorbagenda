@@ -2,6 +2,7 @@ package com.proyecto.spring.datos;
 
 import java.util.List;
 
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -19,7 +20,7 @@ public class DAO implements IDAO{
 
 	@Autowired
 	private SessionFactory sessions;
-	
+	private static Logger logger;
 	public DAO() {
 		
 	}
@@ -38,12 +39,12 @@ public class DAO implements IDAO{
 		
 		
 		 // HQL
-		 Query query = session.createQuery("from Persona where nombre LIKE :busqueda OR apellido1 LIKE :busqueda OR apellido2 LIKE :busqueda");
+		 Query query = session.createQuery("from Persona p where nombre LIKE :busqueda OR apellido1 LIKE :busqueda OR apellido2 LIKE :busqueda");
 	        query.setString("busqueda", string);
 	        //devuelve el objeto. Si no hay devuelve null
 	        @SuppressWarnings("unchecked")
-			List<Persona> personaList =  query.list();
-		 
+			List<Persona> personaList =  (List<Persona>) query.list();
+	       
 		 /* CRITERIA
 		Criteria criteria = session.createCriteria(Persona.class)
                 .add(Restrictions.like("nombre", string));
