@@ -44,15 +44,21 @@ public class DAO implements IDAO {
 	@Override
 	@Transactional
 	public List<Persona> busquedaPersona(String string) {
-		System.out.println(string);
 
-		Session session = sessions.openSession();
-
-		// HQL
-		Query query = session.createQuery(
-				"from Persona p where nombre LIKE :busqueda OR apellido1 LIKE :busqueda OR apellido2 LIKE :busqueda");
-		query.setString("busqueda", string);
-		// devuelve el objeto. Si no hay devuelve null
+		
+		 Session session = sessions.openSession();
+		
+		
+		 // HQL
+		 Query query = session.createQuery("from Persona p where nombre LIKE :busqueda OR apellido1 LIKE :busqueda OR apellido2 LIKE :busqueda");
+	        query.setString("busqueda", string);
+	        //devuelve el objeto. Si no hay devuelve null
+	        @SuppressWarnings("unchecked")
+			List<Persona> personaList =  (List<Persona>) query.list();
+	       
+		 /* CRITERIA
+		Criteria criteria = session.createCriteria(Persona.class)
+                .add(Restrictions.like("nombre", string));
 		@SuppressWarnings("unchecked")
 		List<Persona> personaList = (List<Persona>) query.list();
 		logger.info("Metodo DAO busquedaPersona");
@@ -95,10 +101,13 @@ public class DAO implements IDAO {
 		
 		
 	}
-	
-	
-	
-		
-	
+	public List<Persona> listadoPersona(){
+		Session session = sessions.openSession();
+		Criteria criteria = session.createCriteria(Persona.class);
+		@SuppressWarnings("unchecked")
+		List<Persona> personaList = criteria.list();
+		return personaList;
+	}
+
 
 }

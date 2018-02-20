@@ -27,7 +27,7 @@ public class Direccione implements Serializable {
 	private String provincia;
 
 	//bi-directional many-to-one association to Persona
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="idPersona")
 	private Persona persona;
 

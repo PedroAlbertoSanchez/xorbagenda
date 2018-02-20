@@ -38,6 +38,27 @@
 
                 </table>
             </form:form>
+            <table border="1">
+		<tr>
+			<th>Nombre</th>
+			<th>Apellido 1</th>
+			<th>Apellido 2</th>
+			<th>Telefono</th>
+			<th>Acciones</th>
+			</tr>
+
+			<c:forEach items="${listaPersonas}" var="Persona">
+				<tr>
+					<td><a href="/mostrarDetalle$idPersona={Persona.idPersonas}">${Persona.nombre}</td>
+					<td>${Persona.apellido1}</td>
+					<td>${Persona.apellido2}</td>
+					<td>${Persona.telefonos}</td>
+					<td><a href="edit?id=${user.id}">Modificar</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${user.id}">Eliminar</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
         </div>
 
 </body>

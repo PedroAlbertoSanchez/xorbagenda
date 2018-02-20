@@ -36,16 +36,16 @@ public class Persona implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Direccione
-	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="persona", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Direccione> direcciones;
 
 	//bi-directional many-to-one association to Empleado
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name="idEmpleado")
 	private Empleado empleado;
 
 	//bi-directional many-to-one association to Telefono
-	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="persona", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Telefono> telefonos;
 
 	public Persona() {
