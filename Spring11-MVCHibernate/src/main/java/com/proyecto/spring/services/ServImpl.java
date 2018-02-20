@@ -42,8 +42,8 @@ public class ServImpl implements UserService {
 	}
 
 	@Override
-	public Persona mostarDetalle(String string) {
-		return datos.mostarDetalle(Integer.parseInt(string));
+	public Persona mostrarDetalle(String string) {
+		return datos.mostrarDetalle(Integer.parseInt(string));
 	}
 
 }

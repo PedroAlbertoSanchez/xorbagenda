@@ -8,5 +8,5 @@ public interface UserService {
 	
 	public List<Persona> busquedaPersona(String string);
 	public List<Persona> listadoPersona();
-	public Persona mostarDetalle(String string);
+	public Persona mostrarDetalle(String string);
 }
