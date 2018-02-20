@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
 
 @Repository
@@ -113,6 +113,34 @@ public class DAO implements IDAO {
 		}
 		return personaSet;
 	}
+	public List<Departamento> listadoDepartamento(){
+		Session session = sessions.openSession();
+		Criteria criteria = session.createCriteria(Departamento.class);
+		@SuppressWarnings("unchecked")
+		List<Departamento> listadoDepartamentos =  criteria.list();
+		
+		
+		
+		
+		return listadoDepartamentos;
+	}
+
+	@Override
+	public Set<Persona> busquedaPorDepartamento(String string) {
+		Session session = sessions.openSession();
+		 // HQL
+		 Query query = session.createQuery("Select p from Persona p,Departamento dep, Empleado em where p.empleado=em.idempleados AND em.departamento=dep.iddepartamento AND dep.nombre LIKE :busqueda");
+	        query.setString("busqueda", string);
+	        //devuelve el objeto. Si no hay devuelve null
+	        @SuppressWarnings("unchecked")
+			List<Persona> personaList =  (List<Persona>) query.list();
+	        Set<Persona> personaSet=new HashSet<>();
+			for (Persona persona:personaList){
+				personaSet.add(persona);
+			}
+		return personaSet;
+	}
+	
 
 
 }
