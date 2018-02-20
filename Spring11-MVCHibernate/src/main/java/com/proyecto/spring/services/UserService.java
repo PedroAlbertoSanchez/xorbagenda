@@ -10,4 +10,6 @@ public interface UserService {
 	public List<Persona> busquedaPersona(String string);
 	public Set<Persona> listadoPersona();
 	public Persona mostrarDetalle(String string);
+	public List<String> listadoDepartamento();
+	public Set<Persona> busquedaPorDepartamento(String string);
 }
