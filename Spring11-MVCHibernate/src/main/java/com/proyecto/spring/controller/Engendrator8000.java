@@ -47,7 +47,7 @@ public class Engendrator8000 {
 		logger.info("Entrando en el metodo y buscando a: " + busqueda.getBusqueda());
 		ModelAndView model = new ModelAndView("Resultados");
 		model.addObject("listaPersonas", listaPersonas);
-		
+		System.out.println(listaPersonas.get(0).getDirecciones());
 		return model;
 	}
 

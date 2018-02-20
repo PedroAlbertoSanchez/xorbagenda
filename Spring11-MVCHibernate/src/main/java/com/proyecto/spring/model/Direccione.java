@@ -27,7 +27,7 @@ public class Direccione implements Serializable {
 	private String provincia;
 
 	//bi-directional many-to-one association to Persona
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="idPersona")
 	private Persona persona;
 
@@ -81,5 +81,12 @@ public class Direccione implements Serializable {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
+
+	@Override
+	public String toString() {
+		return "Direccione [iddirecciones=" + iddirecciones + ", codPostal=" + codPostal + ", direccion=" + direccion
+				+ ", localidad=" + localidad + ", provincia=" + provincia + ", persona=" + persona + "]";
+	}
+	
 
 }

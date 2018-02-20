@@ -87,7 +87,6 @@ public class ApplicationContextConfig {
 				SessionFactory sessionFactory) {
 			HibernateTransactionManager transactionManager = new HibernateTransactionManager(
 					sessionFactory);
-
 			return transactionManager;
 		}
 	

@@ -27,17 +27,17 @@ public class Empleado implements Serializable {
 	private String salario;
 
 	//bi-directional many-to-one association to Categoria
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="idCategoria")
 	private Categoria categoria;
 
 	//bi-directional many-to-one association to Departamento
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="idDepartamento")
 	private Departamento departamento;
 
 	//bi-directional many-to-one association to Persona
-	@OneToMany (mappedBy="empleado")
+	@OneToMany (mappedBy="empleado",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<Persona> personas;
 
 	public Empleado() {
