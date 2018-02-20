@@ -1,5 +1,9 @@
 package com.proyecto.spring.controller;
 
+
+
+
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +22,11 @@ import com.proyecto.spring.model.Busqueda;
 import com.proyecto.spring.model.Persona;
 import com.proyecto.spring.services.UserService;
 
+/** 
+ * @author Grupo 1: Emmanunel, P.Alberto, Alberto, y Daniel
+ * @Version 00000001
+ * 
+ */
 @Controller
 public class Engendrator8000 {
 
@@ -34,7 +43,12 @@ public class Engendrator8000 {
 
 		}
 	}
-
+	/**
+	 * 
+	 * @param busqueda:Busca en el listado de personas, los guarda en el objeto model y lo envia a la página Index, mostrandolos en un listado
+	 * @return model 
+	 * @throws Exception
+	 */
 	@RequestMapping("/")
 	public ModelAndView handleRequest(Busqueda busqueda) throws Exception {
 		ModelAndView model = new ModelAndView("Index");
@@ -44,7 +58,15 @@ public class Engendrator8000 {
 		logger.info("Finaliza Metodo: RequestMapping </>");
 		return model;	
 	}
-
+	
+	
+	
+	/**
+	 * 
+	 * @param busqueda: Busca una persona mediante el formulario de busqueda guardandolo en un objeto model y mostrando el detalle.  
+	 * 
+	 * @return model:  devuelve una persona 
+	 */
 	@RequestMapping(value = "/busqueda", method = RequestMethod.POST)
 	public ModelAndView busqueda(@ModelAttribute Busqueda busqueda) {
 		List<Persona> listaPersonas = userService.busquedaPersona(busqueda.getBusqueda());
@@ -54,6 +76,14 @@ public class Engendrator8000 {
 		
 		return model;
 	}
+	
+	/**
+	 * 
+	 * @param request: Muestra los detalles de una persona al hacer click en su nombre
+	 * 
+	 * @return model: devuelve una persona 
+	 */
+	
 	@RequestMapping(value = "/mostrarDetalle", method = RequestMethod.GET)
 	public ModelAndView mostarDetalle(HttpServletRequest request ) {
 		Persona persona=userService.mostrarDetalle(request.getParameter("idPersona"));
