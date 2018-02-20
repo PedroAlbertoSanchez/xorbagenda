@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.proyecto.spring.model.Persona;
 
 
@@ -73,5 +74,23 @@ public class DAO implements IDAO{
 		
 		return personaList;
 	}
+
+	@Override
+	public Persona mostrarDetalle(int idpersonas) {
+		String hql = "from Persona where idpersonas = :busqueda" ; 
+	
+		Query query = sessions.getCurrentSession().createQuery(hql); 	
+		query.setInteger("busqueda", idpersonas); 
+		Persona persona  = (Persona) query.uniqueResult(); 
+		
+		return persona; 
+		
+		
+	}
+	
+	
+	
+		
+	
 
 }
