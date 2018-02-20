@@ -21,5 +21,14 @@ public class ServImpl implements UserService{
 	public List<Persona> busquedaPersona(String string) {
 		return datos.busquedaPersona(string);
 	}
+	
+	public List<Persona> listadoPersona(){
+		return datos.listadoPersona();
+	}
+
+	@Override
+	public Persona mostarDetalle(String string) {
+		return datos.mostarDetalle(Integer.parseInt(string));
+	}
 
 }

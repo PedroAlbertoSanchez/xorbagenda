@@ -33,7 +33,6 @@ public class DAO implements IDAO{
 	@Override
 	@Transactional
 	public List<Persona> busquedaPersona(String string) {
-		System.out.println(string);
 		
 		 Session session = sessions.openSession();
 		
@@ -71,6 +70,13 @@ public class DAO implements IDAO{
 		*/
 		
 		
+		return personaList;
+	}
+	public List<Persona> listadoPersona(){
+		Session session = sessions.openSession();
+		Criteria criteria = session.createCriteria(Persona.class);
+		@SuppressWarnings("unchecked")
+		List<Persona> personaList = criteria.list();
 		return personaList;
 	}
 

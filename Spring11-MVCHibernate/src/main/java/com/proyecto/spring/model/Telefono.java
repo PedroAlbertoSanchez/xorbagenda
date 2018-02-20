@@ -12,6 +12,8 @@ import javax.persistence.*;
 @Table(name="telefonos")
 @NamedQuery(name="Telefono.findAll", query="SELECT t FROM Telefono t")
 public class Telefono implements Serializable {
+	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -50,6 +52,10 @@ public class Telefono implements Serializable {
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+	@Override
+	public String toString() {
+		return telefono;
 	}
 
 }

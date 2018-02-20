@@ -32,7 +32,7 @@ public class Empleado implements Serializable {
 	private Categoria categoria;
 
 	//bi-directional many-to-one association to Departamento
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="idDepartamento")
 	private Departamento departamento;
 

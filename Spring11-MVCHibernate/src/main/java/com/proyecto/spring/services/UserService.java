@@ -7,5 +7,6 @@ import com.proyecto.spring.model.Persona;
 public interface UserService {
 	
 	public List<Persona> busquedaPersona(String string);
-
+	public List<Persona> listadoPersona();
+	public Persona mostarDetalle(String string);
 }
