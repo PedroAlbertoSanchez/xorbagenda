@@ -89,7 +89,6 @@ public class DAO implements IDAO {
 		return personaList;
 	}
 
-	@Override
 	public Persona mostrarDetalle(int idpersonas) {
 		String hql = "from Persona where idpersonas = :busqueda" ; 
 	

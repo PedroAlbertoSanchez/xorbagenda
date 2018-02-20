@@ -56,7 +56,7 @@ public class Engendrator8000 {
 	}
 	@RequestMapping(value = "/mostrarDetalle", method = RequestMethod.GET)
 	public ModelAndView mostarDetalle(HttpServletRequest request ) {
-		Persona persona=userService.mostarDetalle(request.getParameter("idPersona"));
+		Persona persona=userService.mostrarDetalle(request.getParameter("idPersona"));
 		ModelAndView model = new ModelAndView("Detalle");
 		model.addObject("persona", persona);
 		return model;
