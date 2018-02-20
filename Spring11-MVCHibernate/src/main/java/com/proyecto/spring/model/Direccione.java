@@ -84,8 +84,8 @@ public class Direccione implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Direccione [iddirecciones=" + iddirecciones + ", codPostal=" + codPostal + ", direccion=" + direccion
-				+ ", localidad=" + localidad + ", provincia=" + provincia + ", persona=" + persona + "]";
+		return " DIRECCION(codPostal: " + codPostal + ", direccion:" + direccion
+				+ ", localidad: " + localidad+"(" + provincia+"))";
 	}
 	
 

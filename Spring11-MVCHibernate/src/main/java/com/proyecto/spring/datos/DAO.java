@@ -1,6 +1,8 @@
 package com.proyecto.spring.datos;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -100,12 +102,16 @@ public class DAO implements IDAO {
 		
 		
 	}
-	public List<Persona> listadoPersona(){
+	public Set<Persona> listadoPersona(){
 		Session session = sessions.openSession();
 		Criteria criteria = session.createCriteria(Persona.class);
 		@SuppressWarnings("unchecked")
-		List<Persona> personaList = criteria.list();
-		return personaList;
+		List<Persona> personaList =  criteria.list();
+		Set<Persona> personaSet=new HashSet<>();
+		for (Persona persona:personaList){
+			personaSet.add(persona);
+		}
+		return personaSet;
 	}
 
 

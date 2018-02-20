@@ -49,7 +49,7 @@
 
 			<c:forEach items="${listaPersonas}" var="Persona">
 				<tr>
-					<td><a href="/mostrarDetalle$idPersona={Persona.idPersonas}">${Persona.nombre}</td>
+					<td><a href="mostrarDetalle?idPersona=${Persona.idpersonas}">${Persona.nombre}</td>
 					<td>${Persona.apellido1}</td>
 					<td>${Persona.apellido2}</td>
 					<td>${Persona.telefonos}</td>

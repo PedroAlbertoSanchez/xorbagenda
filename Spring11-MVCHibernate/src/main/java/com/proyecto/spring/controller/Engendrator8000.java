@@ -1,6 +1,7 @@
 package com.proyecto.spring.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,7 +39,7 @@ public class Engendrator8000 {
 	@RequestMapping("/")
 	public ModelAndView handleRequest(Busqueda busqueda) throws Exception {
 		ModelAndView model = new ModelAndView("Index");
-		List<Persona> listaPersonas = userService.listadoPersona();
+		Set<Persona> listaPersonas = userService.listadoPersona();
 		model.addObject("busqueda", busqueda);
 		model.addObject("listaPersonas", listaPersonas);
 		logger.info("Finaliza Metodo: RequestMapping </>");
@@ -55,10 +56,11 @@ public class Engendrator8000 {
 		return model;
 	}
 	@RequestMapping(value = "/mostrarDetalle", method = RequestMethod.GET)
-	public ModelAndView mostarDetalle(HttpServletRequest request ) {
+	public ModelAndView mostarDetalle(HttpServletRequest request, Busqueda busqueda ) {
 		Persona persona=userService.mostrarDetalle(request.getParameter("idPersona"));
 		ModelAndView model = new ModelAndView("Detalle");
-		model.addObject("persona", persona);
+		model.addObject("Persona", persona);
+		model.addObject("busqueda", busqueda);
 		return model;
 	}
 

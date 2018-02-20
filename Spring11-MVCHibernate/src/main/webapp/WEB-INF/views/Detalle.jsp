@@ -44,19 +44,30 @@
 			<th>Apellido 1</th>
 			<th>Apellido 2</th>
 			<th>Telefono</th>
-			<th>Telefono</th>
-			<th>Telefono</th>
-			<th>Telefono</th>
-			<th>Telefono</th>
-			<th>Acciones</th>
+			<th>dni</th>
+			<th>fecha de nacimiento</th>
+			<th>direccion</th>
+			<th>codigo empleado</th>
+			<th>fecha de alta</th>
+			<th>salario</th>
+			<th>departamento</th>
+			<th>categoria</th>
 			</tr>
 
 
 				<tr>
-					<td><a href="/mostrarDetalle$idPersona={Persona.idPersonas}">${Persona.nombre}</td>
+					<td>${Persona.nombre}</td>
 					<td>${Persona.apellido1}</td>
 					<td>${Persona.apellido2}</td>
 					<td>${Persona.telefonos}</td>
+					<td>${Persona.dni}</td>
+					<td>${Persona.fechaNacimiento}</td>
+					<td>${Persona.direcciones}</td>
+					<td>${Persona.empleado.codEmpleado}</td>
+					<td>${Persona.empleado.fechaAlta}</td>
+					<td>${Persona.empleado.salario}</td>
+					<td>${Persona.empleado.departamento.nombre}</td>
+					<td>${Persona.empleado.categoria.nombre}</td>
 					<td><a href="edit?id=${user.id}">Modificar</a>
 						&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${user.id}">Eliminar</a>
 					</td>
