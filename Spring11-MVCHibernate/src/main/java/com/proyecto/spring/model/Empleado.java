@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -38,7 +39,7 @@ public class Empleado implements Serializable {
 
 	//bi-directional many-to-one association to Persona
 	@OneToMany (mappedBy="empleado",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	private List<Persona> personas;
+	private Set<Persona> personas;
 
 	public Empleado() {
 	}
@@ -91,11 +92,11 @@ public class Empleado implements Serializable {
 		this.departamento = departamento;
 	}
 
-	public List<Persona> getPersonas() {
+	public Set<Persona> getPersonas() {
 		return this.personas;
 	}
 
-	public void setPersonas(List<Persona> personas) {
+	public void setPersonas(Set<Persona> personas) {
 		this.personas = personas;
 	}
 

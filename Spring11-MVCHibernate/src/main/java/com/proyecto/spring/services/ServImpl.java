@@ -1,6 +1,7 @@
 package com.proyecto.spring.services;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -37,7 +38,7 @@ public class ServImpl implements UserService {
 
 	}
 	
-	public List<Persona> listadoPersona(){
+	public Set<Persona> listadoPersona(){
 		return datos.listadoPersona();
 	}
 

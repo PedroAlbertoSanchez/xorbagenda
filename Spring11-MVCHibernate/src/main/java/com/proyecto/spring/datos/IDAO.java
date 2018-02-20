@@ -1,6 +1,7 @@
 package com.proyecto.spring.datos;
 
 import java.util.List;
+import java.util.Set;
 
 import com.proyecto.spring.model.Persona;
 
@@ -9,6 +10,6 @@ import com.proyecto.spring.model.Persona;
 public interface IDAO {
 
 	public List<Persona> busquedaPersona(String string);
-	public List<Persona> listadoPersona();
+	public Set<Persona> listadoPersona();
 	public Persona mostrarDetalle(int i);
 }
