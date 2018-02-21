@@ -18,6 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
 
+
+/**
+ * 
+ * @author Grupo 1 : Emmanuel, P.Alberto, Alberto y Daniel
+ * version 000000001
+ */
 @Repository
 public class DAO implements IDAO {
 
@@ -38,7 +44,10 @@ public class DAO implements IDAO {
 	public DAO() {
 
 	}
-
+/**
+ * 
+ * @param sessionFactory
+ */
 	public DAO(SessionFactory sessionFactory) {
 		this.sessions = sessionFactory;
 	}
@@ -103,6 +112,8 @@ public class DAO implements IDAO {
 		
 		
 	}
+	
+	
 	public Set<Persona> listadoPersona(){
 		Session session = sessions.openSession();
 		Criteria criteria = session.createCriteria(Persona.class);
