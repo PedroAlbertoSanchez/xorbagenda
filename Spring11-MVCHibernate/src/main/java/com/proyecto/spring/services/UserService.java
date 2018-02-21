@@ -17,4 +17,5 @@ public interface UserService {
 	public Set<Persona> busquedaPorDepartamento(String string);
 	public List<Categoria> listadoCategoria();
 	public void saveOrUpdate(Superusuario superusu);
+	public Superusuario montarPersona(int id);
 }
