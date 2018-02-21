@@ -93,7 +93,7 @@ public class Engendrator8000 {
 	 */
 	
 	@RequestMapping(value = "/mostrarDetalle", method = RequestMethod.GET)
-	public ModelAndView mostarDetalle(HttpServletRequest request, Busqueda busqueda ) {
+	public ModelAndView mostrarDetalle(HttpServletRequest request, Busqueda busqueda ) {
 		Persona persona=userService.mostrarDetalle(request.getParameter("idPersona"));
 		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		ModelAndView model = new ModelAndView("Detalle");
@@ -122,6 +122,13 @@ public class Engendrator8000 {
 		model.addObject("departamentos", listaDepartamentos);
 		model.addObject("usuario", superusu);
 		return model;
+	}
+	
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public Superusuario save(@ModelAttribute Superusuario superusu) {
+		superusu userService.saveOrUdapte(superusu); 
+		ModelAndView model = new ModelAndView("/"); 
+		return superusu; 
 	}
 	
 
