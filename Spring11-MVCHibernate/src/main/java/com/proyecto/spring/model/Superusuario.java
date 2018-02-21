@@ -32,8 +32,6 @@ public class Superusuario {
 	
 	private String codEmpleado;
 
-	private Timestamp fechaAlta;
-
 	private String salario;
 	
 	private String categoria;
@@ -137,14 +135,6 @@ public class Superusuario {
 		this.codEmpleado = codEmpleado;
 	}
 
-	public Timestamp getFechaAlta() {
-		return fechaAlta;
-	}
-
-	public void setFechaAlta(Timestamp fechaAlta) {
-		this.fechaAlta = fechaAlta;
-	}
-
 	public String getSalario() {
 		return salario;
 	}
@@ -180,7 +170,7 @@ public class Superusuario {
 	public Superusuario(){}
 	public Superusuario(int idpersonas, String nombre, String apellido1, String apellido2, String dni,
 			Date fechaNacimiento, String direccion1, String direccion2, String direccion3, int telefono1, int telefono2,
-			int telefono3, String codEmpleado, Timestamp fechaAlta, String salario, String categoria,
+			int telefono3, String codEmpleado, String salario, String categoria,
 			String departamento) {
 		this.idpersonas = idpersonas;
 		this.nombre = nombre;
@@ -195,7 +185,6 @@ public class Superusuario {
 		this.telefono2 = telefono2;
 		this.telefono3 = telefono3;
 		this.codEmpleado = codEmpleado;
-		this.fechaAlta = fechaAlta;
 		this.salario = salario;
 		this.categoria = categoria;
 		this.departamento = departamento;

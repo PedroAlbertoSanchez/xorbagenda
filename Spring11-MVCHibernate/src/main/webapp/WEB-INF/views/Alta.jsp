@@ -36,7 +36,7 @@
 				</tr>
 				<tr>
 					<td>apellido2:</td>
-					<td><form:password path="apellido2" /></td>
+					<td><form:input path="apellido2" /></td>
 				</tr>
 				<tr>
 					<td>dni:</td>
@@ -44,51 +44,47 @@
 				</tr>
 				<tr>
 					<td>fechaNacimiento:</td>
-					<td><form:input path="fechaNacimiento" /></td>
+					<td><form:input path="fechaNacimiento"  id="date" type="date" /></td>
 				</tr>
 				<tr>
 					<td>direccion 1:</td>
-					<td><form:password path="direccion1" /></td>
+					<td><form:input path="direccion1" /></td>
 				</tr>
 				<tr>
 					<td>direccion 2:</td>
-					<td><form:password path="direccion2" /></td>
+					<td><form:input path="direccion2" /></td>
 				</tr>
 				<tr>
 					<td>direccion 3:</td>
-					<td><form:password path="direccion3" /></td>
+					<td><form:input path="direccion3" /></td>
 				</tr>
 				<tr>
 					<td>telefono 1:</td>
-					<td><form:password path="telefono1" /></td>
+					<td><form:input path="telefono1" /></td>
 				</tr>
 				<tr>
 					<td>telefono 2:</td>
-					<td><form:password path="telefono2" /></td>
+					<td><form:input path="telefono2" /></td>
 				</tr>
 				<tr>
 					<td>telefono 3:</td>
-					<td><form:password path="telefono3" /></td>
-				</tr>
-				<tr>
-					<td>fechaAlta intentar timestamp:</td>
-					<td><form:input path="fechaAlta" /></td>
+					<td><form:input path="telefono3" /></td>
 				</tr>
 				<tr>
 					<td>salario:</td>
-					<td><form:password path="salario" /></td>
+					<td><form:input path="salario" /></td>
 				</tr>
 				<label class="col-md-3 control-label" for="departamento">Departamento (*)</label>
                         <div class="col-md-7">
                             <form:select path="departamento" id="departamento" class="form-control input-sm">
                                 <form:option value="">Select Departamento</form:option>
-                                <form:options items="${departamentos}"/>
+                                <form:options items="${departamentos}" />
                             </form:select>
                             <div class="has-error">
                                 <form:errors path="departamento" class="help-inline"/>
                             </div>
                         </div>
-				<label class="col-md-3 control-label" for="categoria">Pais (*)</label>
+				<label class="col-md-3 control-label" for="categoria">Categoria (*)</label>
                         <div class="col-md-7">
                             <form:select path="categoria" id="categoria" class="form-control input-sm">
                                 <form:option value="">Select Categoria</form:option>
