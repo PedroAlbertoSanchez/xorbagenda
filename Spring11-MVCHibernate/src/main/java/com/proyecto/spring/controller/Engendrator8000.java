@@ -14,14 +14,17 @@ import org.apache.logging.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.proyecto.spring.model.Busqueda;
+import com.proyecto.spring.model.Categoria;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
+import com.proyecto.spring.model.Superusuario;
 import com.proyecto.spring.services.UserService;
 
 /** 
@@ -110,5 +113,16 @@ public class Engendrator8000 {
 		model.addObject("departamentos", listaDepartamentos);
 		return model;
 	}
+	@RequestMapping(value = "/alta", method = RequestMethod.GET)
+	public ModelAndView Alta(Superusuario superusu) {
+		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
+		List<Categoria> listaCategoria=userService.listadoCategoria();
+		ModelAndView model = new ModelAndView("Alta");
+		model.addObject("categoria", listaCategoria);
+		model.addObject("departamentos", listaDepartamentos);
+		model.addObject("usuario", superusu);
+		return model;
+	}
+	
 
 }
