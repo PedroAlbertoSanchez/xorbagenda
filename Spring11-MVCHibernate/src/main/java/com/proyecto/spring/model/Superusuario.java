@@ -36,9 +36,9 @@ public class Superusuario {
 
 	private String salario;
 	
-	private Categoria categoria;
+	private String categoria;
 	
-	private Departamento departamento;
+	private String departamento;
 
 
 	public String getNombre() {
@@ -153,19 +153,19 @@ public class Superusuario {
 		this.salario = salario;
 	}
 
-	public Categoria getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
-	public Departamento getDepartamento() {
+	public String getDepartamento() {
 		return departamento;
 	}
 
-	public void setDepartamento(Departamento departamento) {
+	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
 
@@ -176,6 +176,31 @@ public class Superusuario {
 	public void setIdpersonas(int idpersonas) {
 		this.idpersonas = idpersonas;
 	}
+
+	public Superusuario(){}
+	public Superusuario(int idpersonas, String nombre, String apellido1, String apellido2, String dni,
+			Date fechaNacimiento, String direccion1, String direccion2, String direccion3, int telefono1, int telefono2,
+			int telefono3, String codEmpleado, Timestamp fechaAlta, String salario, String categoria,
+			String departamento) {
+		this.idpersonas = idpersonas;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.dni = dni;
+		this.fechaNacimiento = fechaNacimiento;
+		this.direccion1 = direccion1;
+		this.direccion2 = direccion2;
+		this.direccion3 = direccion3;
+		this.telefono1 = telefono1;
+		this.telefono2 = telefono2;
+		this.telefono3 = telefono3;
+		this.codEmpleado = codEmpleado;
+		this.fechaAlta = fechaAlta;
+		this.salario = salario;
+		this.categoria = categoria;
+		this.departamento = departamento;
+	}
+	
 	
 	
 }
