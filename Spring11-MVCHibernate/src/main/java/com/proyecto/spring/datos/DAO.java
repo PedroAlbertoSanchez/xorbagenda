@@ -87,7 +87,7 @@ public class DAO implements IDAO {
 		 * query.setString("Nombre",string); List<Persona> personaList =
 		 * query.list(); //(List<Persona>)
 		 */
-
+	        session.close();
 		return personaList;
 	}
 
@@ -97,6 +97,7 @@ public class DAO implements IDAO {
 		Query query = sessions.getCurrentSession().createQuery(hql); 	
 		query.setInteger("busqueda", idpersonas); 
 		Persona persona  = (Persona) query.uniqueResult(); 
+		
 		
 		return persona; 
 		
@@ -111,6 +112,8 @@ public class DAO implements IDAO {
 		for (Persona persona:personaList){
 			personaSet.add(persona);
 		}
+		
+		session.close();
 		return personaSet;
 	}
 	public List<Departamento> listadoDepartamento(){
@@ -118,7 +121,7 @@ public class DAO implements IDAO {
 		Criteria criteria = session.createCriteria(Departamento.class);
 		@SuppressWarnings("unchecked")
 		List<Departamento> listadoDepartamentos =  criteria.list();
-		
+		session.close();
 		
 		
 		
@@ -126,11 +129,11 @@ public class DAO implements IDAO {
 	}
 
 	@Override
-	public Set<Persona> busquedaPorDepartamento(String string) {
+	public Set<Persona> busquedaPorDepartamento(int i) {
 		Session session = sessions.openSession();
 		 // HQL
-		 Query query = session.createQuery("Select p from Persona p,Departamento dep, Empleado em where p.empleado=em.idempleados AND em.departamento=dep.iddepartamento AND dep.nombre LIKE :busqueda");
-	        query.setString("busqueda", string);
+		 Query query = session.createQuery("Select p from Persona p,Departamento dep, Empleado em where p.empleado=em.idempleados AND em.departamento= :busqueda");
+	        query.setInteger("busqueda", i);
 	        //devuelve el objeto. Si no hay devuelve null
 	        @SuppressWarnings("unchecked")
 			List<Persona> personaList =  (List<Persona>) query.list();
@@ -138,6 +141,7 @@ public class DAO implements IDAO {
 			for (Persona persona:personaList){
 				personaSet.add(persona);
 			}
+			session.close();
 		return personaSet;
 	}
 	

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.proyecto.spring.model.Busqueda;
+import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
 import com.proyecto.spring.services.UserService;
 
@@ -54,7 +55,7 @@ public class Engendrator8000 {
 	public ModelAndView handleRequest(Busqueda busqueda) throws Exception {
 		ModelAndView model = new ModelAndView("Index");
 		Set<Persona> listaPersonas = userService.listadoPersona();
-		List<String> listaDepartamentos=userService.listadoDepartamento();
+		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		model.addObject("busqueda", busqueda);
 		model.addObject("listaPersonas", listaPersonas);
 		model.addObject("departamentos", listaDepartamentos);
@@ -74,7 +75,7 @@ public class Engendrator8000 {
 	public ModelAndView busqueda(@ModelAttribute Busqueda busqueda) {
 		List<Persona> listaPersonas = userService.busquedaPersona(busqueda.getBusqueda());
 		logger.info("Entrando en el metodo y buscando a: " + busqueda.getBusqueda());
-		List<String> listaDepartamentos=userService.listadoDepartamento();
+		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		ModelAndView model = new ModelAndView("Index");
 		model.addObject("listaPersonas", listaPersonas);
 		model.addObject("departamentos", listaDepartamentos);
@@ -91,7 +92,7 @@ public class Engendrator8000 {
 	@RequestMapping(value = "/mostrarDetalle", method = RequestMethod.GET)
 	public ModelAndView mostarDetalle(HttpServletRequest request, Busqueda busqueda ) {
 		Persona persona=userService.mostrarDetalle(request.getParameter("idPersona"));
-		List<String> listaDepartamentos=userService.listadoDepartamento();
+		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		ModelAndView model = new ModelAndView("Detalle");
 		model.addObject("Persona", persona);
 		model.addObject("busqueda", busqueda);
@@ -102,7 +103,7 @@ public class Engendrator8000 {
 	public ModelAndView buscarPorDepartamento(HttpServletRequest request, Busqueda busqueda) {
 		Set<Persona> listaPersonas = userService.busquedaPorDepartamento(request.getParameter("departamento"));
 		logger.info("Entrando en el metodo y buscando a: " + request.getParameter("departamento"));
-		List<String> listaDepartamentos=userService.listadoDepartamento();
+		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		ModelAndView model = new ModelAndView("Index");
 		model.addObject("listaPersonas", listaPersonas);
 		model.addObject("busqueda", busqueda);
