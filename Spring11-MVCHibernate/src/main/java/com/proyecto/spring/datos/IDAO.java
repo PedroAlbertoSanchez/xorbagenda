@@ -20,4 +20,6 @@ public interface IDAO {
 	public Set<Persona> busquedaPorDepartamento(int i);
 	public List<Categoria> listadoCategoria();
 	public void saveOrUpdate(Persona persona);
+	public Departamento buscarDepartamento(String nombre);
+	public Categoria buscarCategoria(String nombre);
 }

@@ -134,7 +134,7 @@ public class Engendrator8000 {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public Superusuario save(@ModelAttribute Superusuario superusu) {
-		superusu userService.saveOrUdapte(superusu); 
+		userService.saveOrUpdate(superusu); 
 		ModelAndView model = new ModelAndView("/"); 
 		return superusu; 
 	}

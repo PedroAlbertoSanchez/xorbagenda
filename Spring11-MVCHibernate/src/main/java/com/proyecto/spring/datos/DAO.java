@@ -19,7 +19,6 @@ import com.proyecto.spring.model.Categoria;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
 
-import model.Users;
 
 /**
  * 
@@ -207,6 +206,34 @@ public class DAO implements IDAO {
 	public void saveOrUpdate(Persona persona) {
 		sessions.getCurrentSession().saveOrUpdate(persona);
 		
+	}
+
+	@Override
+	public Departamento buscarDepartamento(String nombre) {
+		Session session = sessions.openSession();
+
+		// HQL
+		Query query = session.createQuery(
+				"from Departamento dep where dep.nombre LIKE :busqueda ");
+		query.setString("busqueda", nombre);
+		// devuelve el objeto. Si no hay devuelve null
+		@SuppressWarnings("unchecked")
+		Departamento dep = (Departamento) query.uniqueResult();
+		return dep;
+	}
+
+	@Override
+	public Categoria buscarCategoria(String nombre) {
+		Session session = sessions.openSession();
+
+		// HQL
+		Query query = session.createQuery(
+				"from Categoria cat where cat.nombre LIKE :busqueda ");
+		query.setString("busqueda", nombre);
+		// devuelve el objeto. Si no hay devuelve null
+		@SuppressWarnings("unchecked")
+		Categoria dep = (Categoria) query.uniqueResult();
+		return dep;
 	}
 	
 
