@@ -145,7 +145,7 @@ public class Engendrator8000 {
 		List<Departamento> listaDep=userService.listadoDepartamento();
 		List<Categoria> listaCat=userService.listadoCategoria();
 		superusu=userService.montarPersona(Integer.parseInt(request.getParameter("id")));
-		logger.info("este es superusuario"+superusu);
+		logger.info("este es superusuario(update)"+superusu);
 		ModelAndView model = new ModelAndView("Alta");
 		List<String> listaCategoria=new ArrayList<>();
 		List<String> listaDepartamentos=new ArrayList<>();
