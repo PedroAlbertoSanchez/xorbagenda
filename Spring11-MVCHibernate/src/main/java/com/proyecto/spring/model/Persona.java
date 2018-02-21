@@ -2,8 +2,11 @@ package com.proyecto.spring.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -37,18 +40,32 @@ public class Persona implements Serializable {
 
 	//bi-directional many-to-one association to Direccione
 	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	private List<Direccione> direcciones;
+	private Set<Direccione> direcciones;
 
 	//bi-directional many-to-one association to Empleado
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="idEmpleado")
 	private Empleado empleado;
 
 	//bi-directional many-to-one association to Telefono
+	
 	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	private List<Telefono> telefonos;
+	private Set<Telefono> telefonos;
 
 	public Persona() {
+	}
+
+	public Persona(String apellido1, String apellido2, String dni, Date fechaNacimiento, String nombre,
+			Set<Direccione> direcciones, Empleado empleado, Set<Telefono> telefonos) {
+		super();
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.dni = dni;
+		this.fechaNacimiento = fechaNacimiento;
+		this.nombre = nombre;
+		this.direcciones = direcciones;
+		this.empleado = empleado;
+		this.telefonos = telefonos;
 	}
 
 	public int getIdpersonas() {
@@ -99,11 +116,11 @@ public class Persona implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public List<Direccione> getDirecciones() {
+	public Set<Direccione> getDirecciones() {
 		return this.direcciones;
 	}
 
-	public void setDirecciones(List<Direccione> direcciones) {
+	public void setDirecciones(Set<Direccione> direcciones) {
 		this.direcciones = direcciones;
 	}
 
@@ -129,11 +146,11 @@ public class Persona implements Serializable {
 		this.empleado = empleado;
 	}
 
-	public List<Telefono> getTelefonos() {
+	public Set<Telefono> getTelefonos() {
 		return this.telefonos;
 	}
 
-	public void setTelefonos(List<Telefono> telefonos) {
+	public void setTelefonos(Set<Telefono> telefonos) {
 		this.telefonos = telefonos;
 	}
 

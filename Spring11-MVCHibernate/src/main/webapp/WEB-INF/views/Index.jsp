@@ -50,7 +50,8 @@
 			<form:errors path="*" cssClass="destacado" element="div" />
 			<table>
 				<tr>
-					<td>Nombre Usuario:</td>
+					<td>Nombre a Buscar:</td>
+
 					<td><form:input path="busqueda" /></td>
 
 					<td><form:errors path="busqueda" cssClass="destacado" /></td>
@@ -64,6 +65,7 @@
 
 			</table>
 		</form:form>
+
 	</div>
 
 
@@ -217,6 +219,50 @@
   <script src="static/js/custom.js"></script>
   <script src="static/contactform/contactform.js"></script>
 
+
+		<h4><a href="alta">DAR DE ALTA A UN USUARIO</a></h4>
+		<div class="banner">
+		<div class="w3l_banner_nav_left">
+			<nav class="navbar nav_bottom">
+			 <!-- Brand and toggle get grouped for better mobile display --> 
+			   <!-- Collect the nav links, forms, and other content for toggling -->
+			   <!--  CATEGORIAS DESDE LA BASE DE DATOS -->
+				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+					<ul class="nav navbar-nav nav_1">
+						<c:forEach items="${departamentos}" var="departamento">
+							<li><a href="bucarPorDepartamento?departamento=${departamento.iddepartamento}"><b>${departamento.nombre}</b></a></li>
+						</c:forEach>
+					
+					</ul>
+				 </div><!-- /.navbar-collapse -->
+			</nav>
+		</div>
+		<div class="w3l_banner_nav_right">
+			<table border="1">
+			<tr>
+				<th>Nombre</th>
+				<th>Apellido 1</th>
+				<th>Apellido 2</th>
+				<th>Telefono</th>
+				<th>Acciones</th>
+			</tr>
+
+			<c:forEach items="${listaPersonas}" var="Persona">
+				<tr>
+					<td><a href="mostrarDetalle?idPersona=${Persona.idpersonas}">${Persona.nombre}</td>
+					<td>${Persona.apellido1}</td>
+					<td>${Persona.apellido2}</td>
+					<td>${Persona.telefonos}</td>
+					<td><a href="edit?id=${user.id}">Modificar</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${user.id}">Eliminar</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+		</div>
+	</div>
+		
+	</div>
 
 </body>
 </html>

@@ -22,7 +22,7 @@ public class Departamento implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Empleado
-	@OneToMany(mappedBy="departamento")
+	@OneToMany(mappedBy="departamento",fetch=FetchType.LAZY)
 	private List<Empleado> empleados;
 
 	public Departamento() {
