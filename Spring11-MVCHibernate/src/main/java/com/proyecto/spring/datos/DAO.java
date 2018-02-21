@@ -19,6 +19,8 @@ import com.proyecto.spring.model.Categoria;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
 
+import model.Users;
+
 /**
  * 
  * @author Grupo 1 : Emmanuel, P.Alberto, Alberto y Daniel version 21/02/2018
@@ -196,6 +198,15 @@ public class DAO implements IDAO {
 		List<Categoria> listadoCategoria =  criteria.list();
 		session.close();
 		return listadoCategoria;
+	}
+
+	
+	
+	@Override
+	@Transactional
+	public void saveOrUpdate(Persona persona) {
+		sessions.getCurrentSession().saveOrUpdate(persona);
+		
 	}
 	
 
