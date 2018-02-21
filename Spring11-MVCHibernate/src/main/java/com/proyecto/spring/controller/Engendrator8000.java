@@ -4,6 +4,7 @@ package com.proyecto.spring.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -14,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -115,10 +115,18 @@ public class Engendrator8000 {
 	}
 	@RequestMapping(value = "/alta", method = RequestMethod.GET)
 	public ModelAndView Alta(Superusuario superusu) {
-		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
-		List<Categoria> listaCategoria=userService.listadoCategoria();
+		List<Departamento> listaDep=userService.listadoDepartamento();
+		List<Categoria> listaCat=userService.listadoCategoria();
 		ModelAndView model = new ModelAndView("Alta");
-		model.addObject("categoria", listaCategoria);
+		List<String> listaCategoria=new ArrayList<>();
+		List<String> listaDepartamentos=new ArrayList<>();
+		for (Departamento dep:listaDep){
+			listaDepartamentos.add(dep.getNombre());
+		}
+		for (Categoria dep:listaCat){
+			listaCategoria.add(dep.getNombre());
+		}
+		model.addObject("categorias", listaCategoria);
 		model.addObject("departamentos", listaDepartamentos);
 		model.addObject("usuario", superusu);
 		return model;

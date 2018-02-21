@@ -6,6 +6,8 @@ import java.util.Set;
 
 public class Superusuario {
 	
+	private int idpersonas;
+	
 	private String nombre;
 
 	private String apellido1;
@@ -166,5 +168,14 @@ public class Superusuario {
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
+
+	public int getIdpersonas() {
+		return idpersonas;
+	}
+
+	public void setIdpersonas(int idpersonas) {
+		this.idpersonas = idpersonas;
+	}
+	
 	
 }

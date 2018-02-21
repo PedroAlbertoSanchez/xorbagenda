@@ -25,7 +25,7 @@
 		<h1>FORMULARIO DE USUARIOS (add/edit)</h1>
 		<table>
 			<form:form action="save" method="post" modelAttribute="usuario">
-				<form:hidden path="id" />
+				<form:hidden path="idpersonas" />
 				<tr>
 					<td>nombre:</td>
 					<td><form:input path="nombre" /></td>
@@ -78,8 +78,26 @@
 					<td>salario:</td>
 					<td><form:password path="salario" /></td>
 				</tr>
-				<p>seleccionable con categorias</p>
-				<p>seleccionable con departamentos</p>
+				<label class="col-md-3 control-label" for="departamento">Departamento (*)</label>
+                        <div class="col-md-7">
+                            <form:select path="departamento" id="departamento" class="form-control input-sm">
+                                <form:option value="">Select Departamento</form:option>
+                                <form:options items="${departamentos}"/>
+                            </form:select>
+                            <div class="has-error">
+                                <form:errors path="departamento" class="help-inline"/>
+                            </div>
+                        </div>
+				<label class="col-md-3 control-label" for="categoria">Pais (*)</label>
+                        <div class="col-md-7">
+                            <form:select path="categoria" id="categoria" class="form-control input-sm">
+                                <form:option value="">Select Categoria</form:option>
+                                <form:options items="${categorias}"/>
+                            </form:select>
+                            <div class="has-error">
+                                <form:errors path="categoria" class="help-inline"/>
+                            </div>
+                        </div>
 				<tr>
 					<td colspan="2" align="center">
 				<input type="submit" value="Guardar Registro"></td>
