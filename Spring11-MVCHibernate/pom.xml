@@ -84,7 +84,6 @@
 		</dependency>
 	
 	
-	
 		<!-- Apache Database Connection Pool -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
