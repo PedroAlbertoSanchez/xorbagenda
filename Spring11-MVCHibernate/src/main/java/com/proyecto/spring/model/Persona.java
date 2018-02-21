@@ -43,7 +43,7 @@ public class Persona implements Serializable {
 	private Set<Direccione> direcciones;
 
 	//bi-directional many-to-one association to Empleado
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="idEmpleado")
 	private Empleado empleado;
 

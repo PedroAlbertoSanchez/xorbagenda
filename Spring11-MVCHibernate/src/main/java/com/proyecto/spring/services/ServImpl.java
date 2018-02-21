@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.proyecto.spring.datos.IDAO;
+import com.proyecto.spring.model.Categoria;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
 
@@ -59,6 +60,13 @@ public class ServImpl implements UserService {
 	@Override
 	public Set<Persona> busquedaPorDepartamento(String string) {
 		return datos.busquedaPorDepartamento(Integer.parseInt(string));
+	}
+
+	@Override
+	public List<Categoria> listadoCategoria() {
+		List<Categoria> catList = datos.listadoCategoria();
+		
+		return catList;
 	}
 	
 }
