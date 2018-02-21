@@ -18,11 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
 
-
 /**
  * 
- * @author Grupo 1 : Emmanuel, P.Alberto, Alberto y Daniel
- * version 000000001
+ * @author Grupo 1 : Emmanuel, P.Alberto, Alberto y Daniel version 21/02/2018
+ * 
  */
 @Repository
 public class DAO implements IDAO {
@@ -44,37 +43,49 @@ public class DAO implements IDAO {
 	public DAO() {
 
 	}
-/**
- * 
- * @param sessionFactory
- */
+
+	/**
+	 * Constructor
+	 * 
+	 * @param sessionFactory:
+	 *            implementamos una factoría de de sesiones para crear objetos
+	 *            Session que proporciona métodos para recuperar y guardar la
+	 *            información de los objetos en la Base de Datos.
+	 * 
+	 */
 	public DAO(SessionFactory sessionFactory) {
 		this.sessions = sessionFactory;
 	}
 
+	/**
+	 * ArrayList
+	 * 
+	 * @return devuelve una lista de personas
+	 * @param String de Persona
+	 * @see com.proyecto.spring.datos.IDAO#busquedaPersona(java.lang.String)
+	 */
 	@Override
 	@Transactional
 	public List<Persona> busquedaPersona(String string) {
 
-		
-		 Session session = sessions.openSession();
-		
-		
-		 // HQL
-		 Query query = session.createQuery("from Persona p where nombre LIKE :busqueda OR apellido1 LIKE :busqueda OR apellido2 LIKE :busqueda");
-	        query.setString("busqueda", string);
-	        //devuelve el objeto. Si no hay devuelve null
-	        @SuppressWarnings("unchecked")
-			List<Persona> personaList =  (List<Persona>) query.list();
-	       
-		 /* CRITERIA
-		Criteria criteria = session.createCriteria(Persona.class)
-                .add(Restrictions.like("nombre", string));
+		Session session = sessions.openSession();
+
+		// HQL
+		Query query = session.createQuery(
+				"from Persona p where nombre LIKE :busqueda OR apellido1 LIKE :busqueda OR apellido2 LIKE :busqueda");
+		query.setString("busqueda", string);
+		// devuelve el objeto. Si no hay devuelve null
 		@SuppressWarnings("unchecked")
 		List<Persona> personaList = (List<Persona>) query.list();
-		logger.info("Metodo DAO busquedaPersona");
+
 		/*
 		 * CRITERIA Criteria criteria = session.createCriteria(Persona.class)
+		 * .add(Restrictions.like("nombre", string));
+		 * 
+		 * @SuppressWarnings("unchecked") List<Persona> personaList =
+		 * (List<Persona>) query.list();
+		 * logger.info("Metodo DAO busquedaPersona"); /* CRITERIA Criteria
+		 * criteria = session.createCriteria(Persona.class)
 		 * .add(Restrictions.like("nombre", string));
 		 * 
 		 * @SuppressWarnings("unchecked") List<Persona> personaList =
@@ -96,66 +107,84 @@ public class DAO implements IDAO {
 		 * query.setString("Nombre",string); List<Persona> personaList =
 		 * query.list(); //(List<Persona>)
 		 */
-	        session.close();
+		session.close();
 		return personaList;
 	}
 
+	/**
+	 * Al hacer click sobre el campo nombre da una información detallada
+	 * 
+	 * @param int idpersonas
+	 * @see com.proyecto.spring.datos.IDAO#mostrarDetalle(int)
+	 * @return devuelve una persona
+	 */
 	public Persona mostrarDetalle(int idpersonas) {
-		String hql = "from Persona where idpersonas = :busqueda" ; 
-	
-		Query query = sessions.getCurrentSession().createQuery(hql); 	
-		query.setInteger("busqueda", idpersonas); 
-		Persona persona  = (Persona) query.uniqueResult(); 
-		
-		
-		return persona; 
-		
-		
+		String hql = "from Persona where idpersonas = :busqueda";
+
+		Query query = sessions.getCurrentSession().createQuery(hql);
+		query.setInteger("busqueda", idpersonas);
+		Persona persona = (Persona) query.uniqueResult();
+
+		return persona;
+
 	}
-	
-	
-	public Set<Persona> listadoPersona(){
+
+	/**
+	 * @see com.proyecto.spring.datos.IDAO#listadoPersona()
+	 * @return devuelve una lista de personas con valores no repetidos
+	 */
+	public Set<Persona> listadoPersona() {
 		Session session = sessions.openSession();
 		Criteria criteria = session.createCriteria(Persona.class);
 		@SuppressWarnings("unchecked")
-		List<Persona> personaList =  criteria.list();
-		Set<Persona> personaSet=new HashSet<>();
-		for (Persona persona:personaList){
+		List<Persona> personaList = criteria.list();
+		Set<Persona> personaSet = new HashSet<>();
+		for (Persona persona : personaList) {
 			personaSet.add(persona);
 		}
-		
-		session.close();
-		return personaSet;
-	}
-	public List<Departamento> listadoDepartamento(){
-		Session session = sessions.openSession();
-		Criteria criteria = session.createCriteria(Departamento.class);
-		@SuppressWarnings("unchecked")
-		List<Departamento> listadoDepartamentos =  criteria.list();
-		session.close();
-		
-		
-		
-		return listadoDepartamentos;
-	}
 
-	@Override
-	public Set<Persona> busquedaPorDepartamento(int i) {
-		Session session = sessions.openSession();
-		 // HQL
-		 Query query = session.createQuery("Select p from Persona p,Departamento dep, Empleado em where p.empleado=em.idempleados AND em.departamento= :busqueda");
-	        query.setInteger("busqueda", i);
-	        //devuelve el objeto. Si no hay devuelve null
-	        @SuppressWarnings("unchecked")
-			List<Persona> personaList =  (List<Persona>) query.list();
-	        Set<Persona> personaSet=new HashSet<>();
-			for (Persona persona:personaList){
-				personaSet.add(persona);
-			}
-			session.close();
+		session.close();
 		return personaSet;
 	}
 	
+	
+	/**
+	 * 
+	 * @see com.proyecto.spring.datos.IDAO#listadoDepartamento()
+	 * @return listado de departamentos 
+	 */
+	public List<Departamento> listadoDepartamento() {
+		Session session = sessions.openSession();
+		Criteria criteria = session.createCriteria(Departamento.class);
+		@SuppressWarnings("unchecked")
+		List<Departamento> listadoDepartamentos = criteria.list();
+		session.close();
 
+		return listadoDepartamentos;
+	}
+
+	/**
+	 * busqueda de personas por departamento 
+	 * @param int 
+	 * @return devuelve una lista de personas con valores no repetidos
+	 *@see com.proyecto.spring.datos.IDAO#busquedaPorDepartamento(int)
+	 */
+	@Override
+	public Set<Persona> busquedaPorDepartamento(int i) {
+		Session session = sessions.openSession();
+		// HQL
+		Query query = session.createQuery(
+				"Select p from Persona p,Departamento dep, Empleado em where p.empleado=em.idempleados AND em.departamento= :busqueda");
+		query.setInteger("busqueda", i);
+		// devuelve el objeto. Si no hay devuelve null
+		@SuppressWarnings("unchecked")
+		List<Persona> personaList = (List<Persona>) query.list();
+		Set<Persona> personaSet = new HashSet<>();
+		for (Persona persona : personaList) {
+			personaSet.add(persona);
+		}
+		session.close();
+		return personaSet;
+	}
 
 }
