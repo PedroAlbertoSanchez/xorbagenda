@@ -110,6 +110,7 @@ public class ServImpl implements UserService {
 		Empleado emp = new Empleado (su.getCodEmpleado(), su.getFechaAlta(), su.getSalario(), categoria, dep); 
 
 		Persona p = new Persona (su.getApellido1(),su.getApellido2(),su.getDni(), su.getFechaNacimiento(), su.getNombre(), set2,emp, set); 
+		datos.saveOrUpdate(p);
     
 	}	
 
