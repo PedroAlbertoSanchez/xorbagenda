@@ -111,5 +111,11 @@ public class ServImpl implements UserService {
 		
 		return sup;
 		
+	}
+
+	@Override
+	public void saveOrUpdate(Superusuario superusu) {
+		// TODO Auto-generated method stub
+		
 	}	
 }
