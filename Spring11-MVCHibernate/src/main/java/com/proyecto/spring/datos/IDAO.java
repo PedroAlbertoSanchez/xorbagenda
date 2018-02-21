@@ -8,6 +8,7 @@ import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Empleado;
 import com.proyecto.spring.model.Persona;
 import com.proyecto.spring.model.Superusuario;
+import com.proyecto.spring.model.Telefono;
 
 
 

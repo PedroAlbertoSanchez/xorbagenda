@@ -17,7 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.proyecto.spring.model.Categoria;
 import com.proyecto.spring.model.Departamento;
+import com.proyecto.spring.model.Empleado;
 import com.proyecto.spring.model.Persona;
+import com.proyecto.spring.model.Telefono;
 
 
 /**
@@ -198,7 +200,9 @@ public class DAO implements IDAO {
 		session.close();
 		return listadoCategoria;
 	}
-
+	
+	
+	
 	
 	
 	@Override
@@ -235,6 +239,7 @@ public class DAO implements IDAO {
 		Categoria dep = (Categoria) query.uniqueResult();
 		return dep;
 	}
+	
 	
 
 

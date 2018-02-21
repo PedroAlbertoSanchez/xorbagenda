@@ -29,6 +29,9 @@ public class Telefono implements Serializable {
 
 	public Telefono() {
 	}
+	public Telefono(String telefono) {
+		this.telefono=telefono;
+	}
 
 	public int getIdtelefonos() {
 		return this.idtelefonos;

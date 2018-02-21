@@ -36,9 +36,9 @@ public class Superusuario {
 
 	private String salario;
 	
-	private Categoria categoria;
+	private String categoria;
 	
-	private Departamento departamento;
+	private String departamento;
 
 
 	public String getNombre() {
@@ -153,19 +153,19 @@ public class Superusuario {
 		this.salario = salario;
 	}
 
-	public Categoria getCategoria() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
-	public Departamento getDepartamento() {
+	public String getDepartamento() {
 		return departamento;
 	}
 
-	public void setDepartamento(Departamento departamento) {
+	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
 
