@@ -38,8 +38,8 @@ public class Empleado implements Serializable {
 	private Departamento departamento;
 
 	//bi-directional many-to-one association to Persona
-	@OneToMany (mappedBy="empleado",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	private Set<Persona> personas;
+	@OneToOne (mappedBy="empleado",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	private Persona persona;
 
 	public Empleado() {
 	}
@@ -92,26 +92,12 @@ public class Empleado implements Serializable {
 		this.departamento = departamento;
 	}
 
-	public Set<Persona> getPersonas() {
-		return this.personas;
+	public Persona getPersona() {
+		return this.persona;
 	}
 
-	public void setPersonas(Set<Persona> personas) {
-		this.personas = personas;
-	}
-
-	public Persona addPersona(Persona persona) {
-		getPersonas().add(persona);
-		persona.setEmpleado(this);
-
-		return persona;
-	}
-
-	public Persona removePersona(Persona persona) {
-		getPersonas().remove(persona);
-		persona.setEmpleado(null);
-
-		return persona;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 }
