@@ -37,7 +37,7 @@ public class ServImpl implements UserService {
 	@Override
 	public List<Persona> busquedaPersona(String string) {
 		logger.info("Clase ServImpl - Metodo busquedaPersona");
-		return datos.busquedaPersona(string);
+		return datos.busquedaPersona("%"+string+"%");
 
 	}
 	
