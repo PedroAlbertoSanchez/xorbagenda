@@ -97,6 +97,9 @@ public class Persona implements Serializable {
 	}
 
 	public void setDni(String dni) {
+		if(dni.length()>=20){
+			dni = dni.substring(0,19);
+		}
 		this.dni = dni;
 	}
 
@@ -112,8 +115,13 @@ public class Persona implements Serializable {
 		return this.nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String nombre2) {
+		
+		if(nombre2.length()>=45){
+			nombre2 = nombre2.substring(0,43);
+		}
+		this.nombre = nombre2;
+		
 	}
 
 	public Set<Direccione> getDirecciones() {

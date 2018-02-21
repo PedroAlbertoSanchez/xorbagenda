@@ -239,6 +239,8 @@ public class DAO implements IDAO {
 		Categoria dep = (Categoria) query.uniqueResult();
 		return dep;
 	}
+
+
 	
 	
 
