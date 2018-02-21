@@ -34,6 +34,11 @@ public class Direccione implements Serializable {
 	public Direccione() {
 	}
 
+	public Direccione(String direccion1) {
+		this.direccion = direccion1; 
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getIddirecciones() {
 		return this.iddirecciones;
 	}
