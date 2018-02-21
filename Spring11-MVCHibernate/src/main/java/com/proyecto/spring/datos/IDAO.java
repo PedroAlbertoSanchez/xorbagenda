@@ -14,5 +14,5 @@ public interface IDAO {
 	public Set<Persona> listadoPersona();
 	public Persona mostrarDetalle(int i);
 	public List<Departamento> listadoDepartamento();
-	public Set<Persona> busquedaPorDepartamento(String string);
+	public Set<Persona> busquedaPorDepartamento(int i);
 }

@@ -49,26 +49,16 @@ public class ServImpl implements UserService {
 	public Persona mostrarDetalle(String string) {
 		return datos.mostrarDetalle(Integer.parseInt(string));
 	}
-	public List<String> listadoDepartamento(){
+	public List<Departamento> listadoDepartamento(){
 		
 		List<Departamento> depList = datos.listadoDepartamento();
-		List<String> NombreDep=new ArrayList<>();
-		for (Departamento departamento:depList){
-			NombreDep.add(departamento.getNombre());
-		}
-		return NombreDep;
+		
+		return depList;
 	}
 
 	@Override
 	public Set<Persona> busquedaPorDepartamento(String string) {
-		return datos.busquedaPorDepartamento(string);
+		return datos.busquedaPorDepartamento(Integer.parseInt(string));
 	}
 	
-	public static String removeAce(String input) {
-	    // Descomposición canónica
-	    String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
-	    // Nos quedamos únicamente con los caracteres ASCII
-	    Pattern pattern = Pattern.compile("\\p{ASCII}+");
-	    return pattern.matcher(normalized).replaceAll("");
-	}
 }

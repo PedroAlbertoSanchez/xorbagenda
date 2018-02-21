@@ -43,8 +43,8 @@
 			   <!--  CATEGORIAS DESDE LA BASE DE DATOS -->
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav nav_1">
-						<c:forEach items="${departamentos}" var="String">
-							<li><a href="bucarPorDepartamento?departamento=${String}"><b>${String}</b></a></li>
+						<c:forEach items="${departamentos}" var="departamento">
+							<li><a href="bucarPorDepartamento?departamento=${departamento.iddepartamento}"><b>${departamento.nombre}</b></a></li>
 						</c:forEach>
 					
 					</ul>
