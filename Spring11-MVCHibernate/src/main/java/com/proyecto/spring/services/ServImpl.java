@@ -107,7 +107,7 @@ public class ServImpl implements UserService {
 		
 		Departamento dep=datos.buscarDepartamento(su.getDepartamento());
 		Categoria categoria = datos.buscarCategoria(su.getCategoria()); 
-		Empleado emp = new Empleado (su.getCodEmpleado(), su.getFechaAlta(), su.getSalario(), categoria, dep); 
+		Empleado emp = new Empleado (su.getCodEmpleado(), su.getSalario(), categoria, dep); 
 
 		Persona p = new Persona (su.getApellido1(),su.getApellido2(),su.getDni(), su.getFechaNacimiento(), su.getNombre(), set2,emp, set); 
 		datos.saveOrUpdate(p);
@@ -149,7 +149,7 @@ public class ServImpl implements UserService {
 		}
 		Superusuario sup=new Superusuario(p.getIdpersonas(),p.getNombre(),p.getApellido1(),p.getApellido2(),p.getDni(),
 				p.getFechaNacimiento(),	direccion1,direccion2,direccion3,telefono1,
-				telefono2,telefono3,p.getEmpleado().getCodEmpleado(),p.getEmpleado().getFechaAlta(),p.getEmpleado().getSalario(),
+				telefono2,telefono3,p.getEmpleado().getCodEmpleado(),p.getEmpleado().getSalario(),
 				p.getEmpleado().getCategoria().getNombre(),p.getEmpleado().getDepartamento().getNombre());
 		
 		return sup;

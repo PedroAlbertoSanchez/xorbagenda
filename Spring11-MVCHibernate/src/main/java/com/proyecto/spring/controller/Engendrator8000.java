@@ -133,17 +133,19 @@ public class Engendrator8000 {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public Superusuario save(@ModelAttribute Superusuario superusu) {
-		userService.saveOrUpdate(superusu); 
+	public ModelAndView save(@ModelAttribute("usuario") Superusuario usuario) {
+		logger.info("entro en save y intento inserta este superusuario"+ usuario);
+		userService.saveOrUpdate(usuario); 
 		ModelAndView model = new ModelAndView(""); 
-		return superusu; 
+		return model; 
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView Update(Superusuario superusu,HttpServletRequest request) {
 		List<Departamento> listaDep=userService.listadoDepartamento();
 		List<Categoria> listaCat=userService.listadoCategoria();
-		superusu=userService.montarPersona(Integer.parseInt(request.getParameter("idPersona")));
+		superusu=userService.montarPersona(Integer.parseInt(request.getParameter("id")));
+		logger.info("este es superusuario"+superusu);
 		ModelAndView model = new ModelAndView("Alta");
 		List<String> listaCategoria=new ArrayList<>();
 		List<String> listaDepartamentos=new ArrayList<>();
@@ -158,4 +160,7 @@ public class Engendrator8000 {
 		model.addObject("usuario", superusu);
 		return model;
 	}
+	
+	
+	
 }

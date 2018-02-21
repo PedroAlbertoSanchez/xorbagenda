@@ -46,11 +46,10 @@ public class Empleado implements Serializable {
 	
 	
 	
-	public Empleado(String codEmpleado, Timestamp fechaAlta, String salario, Categoria categoria,
+	public Empleado(String codEmpleado, String salario, Categoria categoria,
 			Departamento departamento) {
 		super();
 		this.codEmpleado = codEmpleado;
-		this.fechaAlta = fechaAlta;
 		this.salario = salario;
 		this.categoria = categoria;
 		this.departamento = departamento;
