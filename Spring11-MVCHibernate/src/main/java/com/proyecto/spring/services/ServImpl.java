@@ -16,6 +16,7 @@ import com.proyecto.spring.datos.IDAO;
 import com.proyecto.spring.model.Categoria;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
+import com.proyecto.spring.model.Superusuario;
 
 @Service
 @Transactional
@@ -67,6 +68,5 @@ public class ServImpl implements UserService {
 		List<Categoria> catList = datos.listadoCategoria();
 		
 		return catList;
-	}
-	
+	}	
 }
