@@ -3,8 +3,10 @@ package com.proyecto.spring.services;
 import java.util.List;
 import java.util.Set;
 
+import com.proyecto.spring.model.Categoria;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
+import com.proyecto.spring.model.Superusuario;
 
 public interface UserService {
 	
@@ -13,4 +15,7 @@ public interface UserService {
 	public Persona mostrarDetalle(String string);
 	public List<Departamento> listadoDepartamento();
 	public Set<Persona> busquedaPorDepartamento(String string);
+	public List<Categoria> listadoCategoria();
+	public void saveOrUpdate(Superusuario superusu);
+	public Superusuario montarPersona(int id);
 }

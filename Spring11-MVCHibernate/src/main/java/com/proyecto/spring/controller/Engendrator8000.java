@@ -4,6 +4,7 @@ package com.proyecto.spring.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -20,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.proyecto.spring.model.Busqueda;
+import com.proyecto.spring.model.Categoria;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
+import com.proyecto.spring.model.Superusuario;
 import com.proyecto.spring.services.UserService;
 
 /** 
@@ -90,7 +93,7 @@ public class Engendrator8000 {
 	 */
 	
 	@RequestMapping(value = "/mostrarDetalle", method = RequestMethod.GET)
-	public ModelAndView mostarDetalle(HttpServletRequest request, Busqueda busqueda ) {
+	public ModelAndView mostrarDetalle(HttpServletRequest request, Busqueda busqueda ) {
 		Persona persona=userService.mostrarDetalle(request.getParameter("idPersona"));
 		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		ModelAndView model = new ModelAndView("Detalle");
@@ -110,5 +113,49 @@ public class Engendrator8000 {
 		model.addObject("departamentos", listaDepartamentos);
 		return model;
 	}
-
+	@RequestMapping(value = "/alta", method = RequestMethod.GET)
+	public ModelAndView Alta(Superusuario superusu) {
+		List<Departamento> listaDep=userService.listadoDepartamento();
+		List<Categoria> listaCat=userService.listadoCategoria();
+		ModelAndView model = new ModelAndView("Alta");
+		List<String> listaCategoria=new ArrayList<>();
+		List<String> listaDepartamentos=new ArrayList<>();
+		for (Departamento dep:listaDep){
+			listaDepartamentos.add(dep.getNombre());
+		}
+		for (Categoria dep:listaCat){
+			listaCategoria.add(dep.getNombre());
+		}
+		model.addObject("categorias", listaCategoria);
+		model.addObject("departamentos", listaDepartamentos);
+		model.addObject("usuario", superusu);
+		return model;
+	}
+	
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public Superusuario save(@ModelAttribute Superusuario superusu) {
+		userService.saveOrUpdate(superusu); 
+		ModelAndView model = new ModelAndView(""); 
+		return superusu; 
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public ModelAndView Update(Superusuario superusu,HttpServletRequest request) {
+		List<Departamento> listaDep=userService.listadoDepartamento();
+		List<Categoria> listaCat=userService.listadoCategoria();
+		superusu=userService.montarPersona(Integer.parseInt(request.getParameter("idPersona")));
+		ModelAndView model = new ModelAndView("Alta");
+		List<String> listaCategoria=new ArrayList<>();
+		List<String> listaDepartamentos=new ArrayList<>();
+		for (Departamento dep:listaDep){
+			listaDepartamentos.add(dep.getNombre());
+		}
+		for (Categoria dep:listaCat){
+			listaCategoria.add(dep.getNombre());
+		}
+		model.addObject("categorias", listaCategoria);
+		model.addObject("departamentos", listaDepartamentos);
+		model.addObject("usuario", superusu);
+		return model;
+	}
 }
