@@ -125,8 +125,6 @@
 			<version>${log4j-version}</version>
 		</dependency>
 
-
-
 		<!-- Apache Database Connection Pool -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
