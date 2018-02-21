@@ -80,9 +80,9 @@ public class ServImpl implements UserService {
 	@Override
 	public void saveOrUpdate(Superusuario su) {
 		
-		Telefono tel1 = new Telefono(String.valueOf(su.getTelefono1()));//parseo int a String con los tres telefonos o cambiar en superusuario el telefono de int a string  y añadir 
-		Telefono tel2 = new Telefono(String.valueOf(su.getTelefono2()));
-		Telefono tel3 = new Telefono(String.valueOf(su.getTelefono3())); 
+		Telefono tel1 = new Telefono(su.getTelefono1());//parseo int a String con los tres telefonos o cambiar en superusuario el telefono de int a string  y añadir 
+		Telefono tel2 = new Telefono(su.getTelefono2());
+		Telefono tel3 = new Telefono(su.getTelefono3()); 
 		//tel 1 , tel 2, tel 3
 		//crearte new HashSet
 		Set <Telefono> set = new HashSet<Telefono>();
@@ -125,9 +125,9 @@ public class ServImpl implements UserService {
 		String direccion1="";
 		String direccion2="";
 		String direccion3="";
-		int telefono1=0;
-		int telefono2=0;
-		int telefono3=0;
+		String telefono1="";
+		String telefono2="";
+		String telefono3="";
 		for( Direccione direccion:p.getDirecciones() ){
 			if (cont1==0){
 				direccion1=direccion.getDireccion();
@@ -139,11 +139,11 @@ public class ServImpl implements UserService {
 			cont1++;
 		}for(Telefono telefono:p.getTelefonos() ){
 			if (cont2==0){
-				telefono1=Integer.parseInt(telefono.getTelefono());
+				telefono1=telefono.getTelefono();
 			}else if (cont2==1){
-				telefono2=Integer.parseInt(telefono.getTelefono());
+				telefono2=telefono.getTelefono();
 			}else if (cont2==2){
-				telefono3=Integer.parseInt(telefono.getTelefono());
+				telefono3=telefono.getTelefono();
 			}
 			cont2++;
 		}

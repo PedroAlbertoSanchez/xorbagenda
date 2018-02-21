@@ -24,11 +24,11 @@ public class Superusuario {
 	
 	private String direccion3;
 	
-	private int telefono1;
+	private String telefono1;
 	
-	private int telefono2;
+	private String telefono2;
 	
-	private int telefono3;
+	private String telefono3;
 	
 	private String codEmpleado;
 
@@ -103,27 +103,27 @@ public class Superusuario {
 		this.direccion3 = direccion3;
 	}
 
-	public int getTelefono3() {
+	public String getTelefono3() {
 		return telefono3;
 	}
 
-	public void setTelefono3(int telefono3) {
+	public void setTelefono3(String telefono3) {
 		this.telefono3 = telefono3;
 	}
 
-	public int getTelefono1() {
+	public String getTelefono1() {
 		return telefono1;
 	}
 
-	public void setTelefono1(int telefono1) {
+	public void setTelefono1(String telefono1) {
 		this.telefono1 = telefono1;
 	}
 
-	public int getTelefono2() {
+	public String getTelefono2() {
 		return telefono2;
 	}
 
-	public void setTelefono2(int telefono2) {
+	public void setTelefono2(String telefono2) {
 		this.telefono2 = telefono2;
 	}
 
@@ -169,8 +169,8 @@ public class Superusuario {
 
 	public Superusuario(){}
 	public Superusuario(int idpersonas, String nombre, String apellido1, String apellido2, String dni,
-			Date fechaNacimiento, String direccion1, String direccion2, String direccion3, int telefono1, int telefono2,
-			int telefono3, String codEmpleado, String salario, String categoria,
+			Date fechaNacimiento, String direccion1, String direccion2, String direccion3, String telefono1, String telefono2,
+			String telefono3, String codEmpleado, String salario, String categoria,
 			String departamento) {
 		this.idpersonas = idpersonas;
 		this.nombre = nombre;
@@ -188,6 +188,15 @@ public class Superusuario {
 		this.salario = salario;
 		this.categoria = categoria;
 		this.departamento = departamento;
+	}
+
+	@Override
+	public String toString() {
+		return "Superusuario [idpersonas=" + idpersonas + ", nombre=" + nombre + ", apellido1=" + apellido1
+				+ ", apellido2=" + apellido2 + ", dni=" + dni + ", fechaNacimiento=" + fechaNacimiento + ", direccion1="
+				+ direccion1 + ", direccion2=" + direccion2 + ", direccion3=" + direccion3 + ", telefono1=" + telefono1
+				+ ", telefono2=" + telefono2 + ", telefono3=" + telefono3 + ", codEmpleado=" + codEmpleado
+				+ ", salario=" + salario + ", categoria=" + categoria + ", departamento=" + departamento + "]";
 	}
 	
 	
