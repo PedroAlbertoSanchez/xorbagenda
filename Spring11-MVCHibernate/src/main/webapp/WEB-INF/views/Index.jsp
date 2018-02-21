@@ -35,6 +35,7 @@
 
 			</table>
 		</form:form>
+		<h4><a href="alta">DAR DE ALTA A UN USUARIO</a></h4>
 		<div class="banner">
 		<div class="w3l_banner_nav_left">
 			<nav class="navbar nav_bottom">

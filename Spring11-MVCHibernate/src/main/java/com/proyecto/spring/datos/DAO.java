@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.proyecto.spring.model.Categoria;
 import com.proyecto.spring.model.Departamento;
 import com.proyecto.spring.model.Persona;
 
@@ -154,6 +155,15 @@ public class DAO implements IDAO {
 			}
 			session.close();
 		return personaSet;
+	}
+	@Override
+	public List<Categoria> listadoCategoria() {
+		Session session = sessions.openSession();
+		Criteria criteria = session.createCriteria(Categoria.class);
+		@SuppressWarnings("unchecked")
+		List<Categoria> listadoCategoria =  criteria.list();
+		session.close();
+		return listadoCategoria;
 	}
 	
 
