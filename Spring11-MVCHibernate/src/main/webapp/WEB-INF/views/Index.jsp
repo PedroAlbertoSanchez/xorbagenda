@@ -88,7 +88,7 @@
 			</h3>
 			<div class="logo text-center">
 				<center>
-					<table border="0" WIDTH="700">
+					<table class="noelia" border="0" WIDTH="700">
 						<tr>
 							<th><h4>Nombre</h4></th>
 							<th><h4>Apellidos</h4></th>

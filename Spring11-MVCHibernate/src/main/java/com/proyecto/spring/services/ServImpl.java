@@ -104,7 +104,7 @@ public class ServImpl implements UserService {
 		
 		
 		
-		Set<Direccione> set2 = new HashSet <Direccione>();
+		
 		logger.info(su.getFechaNacimiento());
 		Departamento dep=datos.buscarDepartamento(su.getDepartamento());
 		Categoria categoria = datos.buscarCategoria(su.getCategoria()); 
