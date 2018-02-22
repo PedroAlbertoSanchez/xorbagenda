@@ -60,7 +60,7 @@ public class Persona implements Serializable {
 	}
 
 	public Persona(String apellido1, String apellido2, String dni, Date fechaNacimiento, String nombre,
-			Set<Direccione> direcciones, Empleado empleado, Set<Telefono> telefonos) {
+		Set<Direccione> direcciones, Empleado empleado, Set<Telefono> telefonos) {
 		super();
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
