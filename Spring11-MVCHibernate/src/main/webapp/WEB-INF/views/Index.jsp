@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Página principal</title>
+<title>Xorbagenda</title>
 
   <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
   <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
@@ -68,7 +68,7 @@
     <div class="container wow fadeInUp delay-03s">
       <div class="row">
         <div class="logo text-center">
-          <img src="static/img/logo.png" alt="logo" width="150">
+          <img src="static/img/agenda.png" alt="logo"><h2 class="subs-title text-center">Xorbagenda</h2>
           <h2>Cuenta atrás para el fin del mundo.</h2>
           <p class="sub-p">El suicidio colectivo está cerca...</p>
         </div>
@@ -77,10 +77,10 @@
         <h2 class="subs-title text-center">Busca tu Xorba en Xorbagenda</h2>
         <div class="subcription-info text-center">
           <form:form class="subscribe_form" action="busqueda" method="post" modelAttribute="busqueda">
-            <form:input value="" placeholder=" ¿Te acuerdas de Fulana? Buscala aquí" path="busqueda" />
+            <form:input value="" placeholder=" ¿Te acuerdas de Fulana? Buscala aquí" path="busqueda" class="email" id="email" name="email"/>
             <input class="subscribe" name="email" value="¡A la yugular!" type="submit">
           </form:form>
-          <p class="sub-p">We Promise to never span you.</p>
+          <p class="sub-p">También sirve para buscar otros seres humanos.</p>
         </div>
       </div>
     </div>
@@ -113,13 +113,12 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 text-center">
           
-          <!-- Sobre nosotros
             <div class="about-title">
               <h2>Sobre nosotros</h2>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </br>voluptatum deleniti atque corrupti quos dolores e</p>
+              <p>Nuestra vocación es conectar humanos con otros humanos para repoblar el mundo. </br>Es broma, estamos en esto por dinero.</p>
             </div>
             
-             -->
+          
              
 			<!--  CATEGORIAS DESDE LA BASE DE DATOS -->
              <c:forEach items="${departamentos}" var="departamento">
@@ -245,7 +244,7 @@
       <div class="row bort">
 
         <div class="copyright">
-          © Copyright Maundy Theme. All rights reserved.
+          © Copyright Grupo1 - Xorbagenda Company.
           <div class="credits">
             <!--
               All the links in the footer should remain intact. 
