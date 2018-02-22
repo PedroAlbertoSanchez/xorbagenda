@@ -2,6 +2,8 @@ package com.proyecto.spring.services;
 
 import java.sql.Timestamp;
 import java.text.Normalizer;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -85,10 +87,6 @@ public class ServImpl implements UserService {
 		//tel 1 , tel 2, tel 3
 		//crearte new HashSet
 		Set <Telefono> set = new HashSet<Telefono>();
-		
-
-		
-		
 
 		//añadir tel 1,... al hashset
 		
@@ -96,22 +94,25 @@ public class ServImpl implements UserService {
 		
 		//Todo lo mismp con direccion 
 		
-
-		
-		
 		Set<Direccione> set2 = new HashSet <Direccione>(); 
+		
 
-		
-		
-		
-		
 		logger.info(su.getFechaNacimiento());
 		Departamento dep=datos.buscarDepartamento(su.getDepartamento());
 		Categoria categoria = datos.buscarCategoria(su.getCategoria()); 
 		Empleado emp = new Empleado (su.getCodEmpleado(), su.getSalario(), categoria, dep); 
 		emp.setIdempleados(su.getIdempleados());
-		Date date= new Date();
-		Persona p = new Persona (su.getApellido1(),su.getApellido2(),su.getDni(),date, su.getNombre(), set2,emp, set); 
+		
+		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+		Date fecha = null;
+		try{
+			fecha = formatoDelTexto.parse(su.getFechaNacimiento());
+		}
+		catch (ParseException ex){
+			ex.printStackTrace();
+		}
+		Persona p = new Persona (su.getApellido1(),su.getApellido2(),su.getDni(), fecha, su.getNombre(), set2,emp, set); 
+		
 		Telefono tel1 = new Telefono(su.getIdtelefonos1(),su.getTelefono1(),p);//parseo int a String con los tres telefonos o cambiar en superusuario el telefono de int a string  y añadir 
 		Telefono tel2 = new Telefono(su.getIdtelefonos2(),su.getTelefono2(),p);
 		Telefono tel3 = new Telefono(su.getIdtelefonos3(),su.getTelefono3(),p);
