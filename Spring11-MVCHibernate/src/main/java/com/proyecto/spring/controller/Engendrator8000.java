@@ -160,7 +160,7 @@ public class Engendrator8000 {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@Valid Superusuario usuario,BindingResult result, ModelMap model) {
-		if (result.hasErrors()) {
+		/*if (result.hasErrors()) {
 			model.addAttribute("usuario", usuario);
 			Set<Departamento> listaDep=userService.listadoDepartamento();
 			Set<Categoria> listaCat=userService.listadoCategoria();
@@ -176,7 +176,8 @@ public class Engendrator8000 {
 			model.addAttribute("departamentos", listaDepartamentos);
 			System.out.println("--- Hay algunos errores");
 			return "Alta";
-		}
+		}*/
+		logger.info(usuario.getFechaNacimiento());
 		logger.info("entro en save y intento inserta este superusuario"+ usuario);
 		userService.saveOrUpdate(usuario); 
 		return "redirect:/"; 
