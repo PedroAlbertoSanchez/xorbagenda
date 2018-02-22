@@ -81,6 +81,9 @@
             <input class="subscribe" name="email" value="¡A la yugular!" type="submit">
           </form:form>
           <p class="sub-p">También sirve para buscar otros seres humanos.</p>
+		<c:if test="${noResultadoBusqueda}">
+			<div class="alert alert-warning"> NO SE HA ENCONTRADO BUSQUEDA!!! </div>
+		</c:if>
         </div>
       </div>
     </div>
