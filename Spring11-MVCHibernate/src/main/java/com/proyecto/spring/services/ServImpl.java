@@ -98,6 +98,7 @@ public class ServImpl implements UserService {
 		
 
 		logger.info(su.getFechaNacimiento());
+		logger.info("---------- askjdfkas j-----"+su.getDepartamento());
 		Departamento dep=datos.buscarDepartamento(su.getDepartamento());
 		Categoria categoria = datos.buscarCategoria(su.getCategoria()); 
 		Empleado emp = new Empleado (su.getCodEmpleado(), su.getSalario(), categoria, dep); 

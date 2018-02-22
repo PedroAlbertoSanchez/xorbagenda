@@ -71,6 +71,14 @@ public class Engendrator8000 {
 		return model;	
 	}
 	
+	@RequestMapping("/juu")
+	public ModelAndView handleRequest2() throws Exception {
+		ModelAndView model = new ModelAndView("redirect:/");
+	
+		
+		return model;	
+	}
+	
 	
 	
 	/**
