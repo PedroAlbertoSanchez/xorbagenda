@@ -28,7 +28,7 @@ public class Empleado implements Serializable {
 	private String salario;
 
 	//bi-directional many-to-one association to Categoria
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="idCategoria")
 	private Categoria categoria;
 

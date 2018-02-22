@@ -39,6 +39,7 @@ public class Persona implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Direccione
+	
 	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private Set<Direccione> direcciones;
 
@@ -52,7 +53,10 @@ public class Persona implements Serializable {
 	@OneToMany(mappedBy="persona", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private Set<Telefono> telefonos;
 
-	public Persona() {
+	public Persona() {}
+	
+	public Persona(int idpersonas) {
+		this.idpersonas=idpersonas;
 	}
 
 	public Persona(String apellido1, String apellido2, String dni, Date fechaNacimiento, String nombre,

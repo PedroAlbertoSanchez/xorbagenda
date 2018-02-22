@@ -13,9 +13,9 @@ public interface UserService {
 	public List<Persona> busquedaPersona(String string);
 	public Set<Persona> listadoPersona();
 	public Persona mostrarDetalle(String string);
-	public List<Departamento> listadoDepartamento();
+	public Set<Departamento> listadoDepartamento();
 	public Set<Persona> busquedaPorDepartamento(String string);
-	public List<Categoria> listadoCategoria();
+	public Set<Categoria> listadoCategoria();
 	public void saveOrUpdate(Superusuario superusu);
 	public Superusuario montarPersona(int id);
 	public void delete(int id);

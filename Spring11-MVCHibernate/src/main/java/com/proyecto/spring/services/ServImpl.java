@@ -2,6 +2,7 @@ package com.proyecto.spring.services;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -57,9 +58,9 @@ public class ServImpl implements UserService {
 	public Persona mostrarDetalle(String string) {
 		return datos.mostrarDetalle(Integer.parseInt(string));
 	}
-	public List<Departamento> listadoDepartamento(){
+	public Set<Departamento> listadoDepartamento(){
 		
-		List<Departamento> depList = datos.listadoDepartamento();
+		Set<Departamento> depList = datos.listadoDepartamento();
 		
 		return depList;
 	}
@@ -70,8 +71,8 @@ public class ServImpl implements UserService {
 	}
 
 	@Override
-	public List<Categoria> listadoCategoria() {
-		List<Categoria> catList = datos.listadoCategoria();
+	public Set<Categoria> listadoCategoria() {
+		Set<Categoria> catList = datos.listadoCategoria();
 		
 		return catList;
 	}
@@ -79,10 +80,10 @@ public class ServImpl implements UserService {
 
 	@Override
 	public void saveOrUpdate(Superusuario su) {
-		
-		Telefono tel1 = new Telefono(su.getTelefono1());//parseo int a String con los tres telefonos o cambiar en superusuario el telefono de int a string  y añadir 
-		Telefono tel2 = new Telefono(su.getTelefono2());
-		Telefono tel3 = new Telefono(su.getTelefono3()); 
+		Persona persona=new Persona(su.getIdpersonas());
+		Telefono tel1 = new Telefono(su.getIdtelefonos1(),su.getTelefono1(),persona);//parseo int a String con los tres telefonos o cambiar en superusuario el telefono de int a string  y añadir 
+		Telefono tel2 = new Telefono(su.getIdtelefonos2(),su.getTelefono2(),persona);
+		Telefono tel3 = new Telefono(su.getIdtelefonos3(),su.getTelefono3(),persona); 
 		//tel 1 , tel 2, tel 3
 		//crearte new HashSet
 		Set <Telefono> set = new HashSet<Telefono>();
@@ -95,9 +96,9 @@ public class ServImpl implements UserService {
 		
 		//Todo lo mismp con direccion 
 		
-		Direccione dir1 = new Direccione(su.getDireccion1());  
-		Direccione dir2 = new Direccione(su.getDireccion2()); 
-		Direccione dir3 = new Direccione(su.getDireccion3()); 
+		Direccione dir1 = new Direccione(su.getIddirecciones1(),su.getCodPostal1(),su.getDireccion1(),su.getLocalidad1(),su.getProvincia1(),persona);  
+		Direccione dir2 = new Direccione(su.getIddirecciones2(),su.getCodPostal2(),su.getDireccion2(),su.getLocalidad2(),su.getProvincia2(),persona); 
+		Direccione dir3 = new Direccione(su.getIddirecciones3(),su.getCodPostal3(),su.getDireccion3(),su.getLocalidad3(),su.getProvincia3(),persona); 
 		
 		Set<Direccione> set2 = new HashSet <Direccione>(); 
 		set2.add(dir1);
@@ -108,48 +109,86 @@ public class ServImpl implements UserService {
 		Departamento dep=datos.buscarDepartamento(su.getDepartamento());
 		Categoria categoria = datos.buscarCategoria(su.getCategoria()); 
 		Empleado emp = new Empleado (su.getCodEmpleado(), su.getSalario(), categoria, dep); 
-
-		Persona p = new Persona (su.getApellido1(),su.getApellido2(),su.getDni(), su.getFechaNacimiento(), su.getNombre(), set2,emp, set); 
+		emp.setIdempleados(su.getIdempleados());
+		Date date= new Date();
+		Persona p = new Persona (su.getApellido1(),su.getApellido2(),su.getDni(),date, su.getNombre(), set2,emp, set); 
+		p.setIdpersonas(su.getIdpersonas());
+		if (p.getIdpersonas()==0){
+			Persona persona2=new Persona();
+			persona2.setNombre("");
+			persona2.setApellido1("");
+			logger.info("intentando guardar persona2");
+			datos.save(persona2);
+		}
+		logger.info("intentando guardar persona");
 		datos.saveOrUpdate(p);
-    
+	
+		
 	}	
-
-
-	}
 
 	@Override
 	public Superusuario montarPersona(int id) {
 		Persona p=datos.mostrarDetalle(id);
 		int cont1=0;
 		int cont2=0;
+		String codPostal1="";
 		String direccion1="";
+		String localidad1="";
+		String provincia1="";
+		String codPostal2="";
 		String direccion2="";
+		String localidad2="";
+		String provincia2="";
+		String codPostal3="";
 		String direccion3="";
+		String localidad3="";
+		String provincia3="";
 		String telefono1="";
 		String telefono2="";
 		String telefono3="";
+		int idtelefonos1=0;
+		int idtelefonos2=0;
+		int idtelefonos3=0;
+		int iddirecciones1=0;
+		int iddirecciones2=0;
+		int iddirecciones3=0;
 		for( Direccione direccion:p.getDirecciones() ){
 			if (cont1==0){
+				codPostal1=direccion.getCodPostal();
 				direccion1=direccion.getDireccion();
+				localidad1=direccion.getLocalidad();
+				provincia1=direccion.getProvincia();
+				iddirecciones1=direccion.getIddirecciones();
 			}else if (cont1==1){
+				codPostal2=direccion.getCodPostal();
 				direccion2=direccion.getDireccion();
+				localidad2=direccion.getLocalidad();
+				provincia2=direccion.getProvincia();
+				iddirecciones2=direccion.getIddirecciones();
 			}else if (cont1==2){
+				codPostal3=direccion.getCodPostal();
 				direccion3=direccion.getDireccion();
+				localidad3=direccion.getLocalidad();
+				provincia3=direccion.getProvincia();
+				iddirecciones3=direccion.getIddirecciones();
 			}
 			cont1++;
 		}for(Telefono telefono:p.getTelefonos() ){
 			if (cont2==0){
 				telefono1=telefono.getTelefono();
+				idtelefonos1=telefono.getIdtelefonos();
 			}else if (cont2==1){
 				telefono2=telefono.getTelefono();
+				idtelefonos2=telefono.getIdtelefonos();
 			}else if (cont2==2){
 				telefono3=telefono.getTelefono();
+				idtelefonos3=telefono.getIdtelefonos();
 			}
 			cont2++;
 		}
-		Superusuario sup=new Superusuario(p.getIdpersonas(),p.getNombre(),p.getApellido1(),p.getApellido2(),p.getDni(),
-				p.getFechaNacimiento(),	direccion1,direccion2,direccion3,telefono1,
-				telefono2,telefono3,p.getEmpleado().getCodEmpleado(),p.getEmpleado().getSalario(),
+		Superusuario sup=new Superusuario(p.getIdpersonas(),p.getEmpleado().getIdempleados(),p.getNombre(),p.getApellido1(),p.getApellido2(),p.getDni(),
+				p.getFechaNacimiento().toString(),codPostal1,  localidad1, provincia1,	direccion1,iddirecciones1,codPostal2,  localidad2, provincia2,direccion2,iddirecciones2,codPostal3,  localidad3, provincia3,direccion3,iddirecciones3,idtelefonos1,telefono1,
+				idtelefonos2,telefono2,idtelefonos3,telefono3,p.getEmpleado().getCodEmpleado(),p.getEmpleado().getSalario(),
 				p.getEmpleado().getCategoria().getNombre(),p.getEmpleado().getDepartamento().getNombre());
 		
 		return sup;

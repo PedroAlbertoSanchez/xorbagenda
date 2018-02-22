@@ -17,11 +17,12 @@ public interface IDAO {
 	public List<Persona> busquedaPersona(String string);
 	public Set<Persona> listadoPersona();
 	public Persona mostrarDetalle(int i);
-	public List<Departamento> listadoDepartamento();
+	public Set<Departamento> listadoDepartamento();
 	public Set<Persona> busquedaPorDepartamento(int i);
-	public List<Categoria> listadoCategoria();
+	public Set<Categoria> listadoCategoria();
 	public void saveOrUpdate(Persona persona);
 	public Departamento buscarDepartamento(String nombre);
 	public Categoria buscarCategoria(String nombre);
+	public void save(Persona p);
 	public void delete(int id);
 }

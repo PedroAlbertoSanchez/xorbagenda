@@ -23,8 +23,7 @@ public class Categoria implements Serializable {
 
 	private String nombre;
 
-	//bi-directional many-to-one association to Empleado
-	@OneToMany(mappedBy="categoria",fetch=FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Empleado> empleados;
 
 	public Categoria() {

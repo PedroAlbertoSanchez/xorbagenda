@@ -19,18 +19,20 @@ public class Telefono implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idtelefonos;
-
+	
 	private String telefono;
 
 	//bi-directional many-to-one association to Persona
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="idPersona")
 	private Persona persona;
 
 	public Telefono() {
 	}
-	public Telefono(String telefono) {
+	public Telefono(int idtelefonos, String telefono,Persona persona) {
+		this.idtelefonos=idtelefonos;
 		this.telefono=telefono;
+		this.persona=persona;
 	}
 
 	public int getIdtelefonos() {
