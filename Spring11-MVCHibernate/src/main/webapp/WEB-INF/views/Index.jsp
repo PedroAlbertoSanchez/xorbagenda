@@ -41,12 +41,10 @@
 
 </head>
 <body>
-
+<!--  
 	<div id="contenedor">
 		<h2>Buscar Empleado</h2>
-
 		<form:form action="busqueda" method="POST" modelAttribute="busqueda">
-
 			<form:errors path="*" cssClass="destacado" element="div" />
 			<table>
 				<tr>
@@ -59,37 +57,35 @@
 				<tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="Buscar" name="" />
-
 					</td>
 				</tr>
-
 			</table>
 		</form:form>
 
 	</div>
-
-
-
-
+-->
 <div class="content">
     <div class="container wow fadeInUp delay-03s">
       <div class="row">
         <div class="logo text-center">
           <img src="static/img/logo.png" alt="logo" width="150">
-          <h2>We Are Baking Something New!! Comming Soon</h2>
+          <h2>Cuenta atrás para el fin del mundo.</h2>
+          <p class="sub-p">El suicidio colectivo está cerca...</p>
         </div>
 
-        <div id="countdown" data-wow-delay=".3s" data-date="Dec 26, 2020 06:00:00"></div>
-        <h2 class="subs-title text-center">Subscribe now to get Recent updates!!!</h2>
+        <div id="countdown" data-wow-delay=".3s" data-date="Dec 26, 2019 06:00:00"></div>
+        <h2 class="subs-title text-center">Busca tu Xorba en Xorbagenda</h2>
         <div class="subcription-info text-center">
-          <form class="subscribe_form" action="#" method="post">
-            <input required="" value="" placeholder="Enter your email..." class="email" id="email" name="email" type="email">
-            <input class="subscribe" name="email" value="Subscribe!" type="submit">
-          </form>
+          <form:form class="subscribe_form" action="busqueda" method="post" modelAttribute="busqueda">
+            <form:input value="" placeholder=" ¿Te acuerdas de Fulana? Buscala aquí" path="busqueda" />
+            <input class="subscribe" name="email" value="¡A la yugular!" type="submit">
+          </form:form>
           <p class="sub-p">We Promise to never span you.</p>
         </div>
       </div>
     </div>
+    
+    <!--  Esta es el area de botones de redes sociales
     <section>
       <div class="container">
         <div class="row bort text-center">
@@ -109,14 +105,32 @@
         </div>
       </div>
     </section>
+    -->
+    
+    
     <section id="about" class="section-padding">
       <div class="container">
         <div class="row">
           <div class="col-md-12 col-sm-12 text-center">
+          
+          <!-- Sobre nosotros
             <div class="about-title">
-              <h2>About Us</h2>
+              <h2>Sobre nosotros</h2>
               <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium </br>voluptatum deleniti atque corrupti quos dolores e</p>
             </div>
+            
+             -->
+             
+			<!--  CATEGORIAS DESDE LA BASE DE DATOS -->
+             <c:forEach items="${departamentos}" var="departamento">
+             	<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp delay-02s">
+					<h3><a href="bucarPorDepartamento?departamento=${departamento.iddepartamento}">${departamento.nombre}</a></h3>
+					<p>Click para visualizar las personas de este departamento.</p>
+				</div>	
+			</c:forEach>					
+
+			
+			<!-- Cosas del template antiguo
             <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp delay-02s">
               <div class="img">
                 <i class="fa fa-refresh"></i>
@@ -145,11 +159,44 @@
               <h3 class="abt-hd">Our Objective</h3>
               <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
             </div>
+             -->
+           
+            
           </div>
         </div>
       </div>
     </section>
     
+    <!-- Visualización de resultados  -->
+    <section id="about" class="section-padding">		
+    	<div class="container wow fadeInUp delay-03s">
+    		<h3 class="subs-title text-center"><a href="alta"> DAR DE ALTA A UN USUARIO </a></h3>
+    		<div class="logo text-center">
+			<center><table border="0" WIDTH="700">
+				<tr>
+				<th><h4>Nombre</h4></th>
+				<th><h4>Apellidos</h4></th>
+				<th><h4>Telefono</h4></th>
+				<th><h4>Acciones</h4></th>
+				</tr>
+
+				<c:forEach items="${listaPersonas}" var="Persona">
+					<tr>
+					<td><a href="mostrarDetalle?idPersona=${Persona.idpersonas}">${Persona.nombre}</a></td>
+					<td>${Persona.apellido1} ${Persona.apellido2}</td>
+					<td>${Persona.telefonos}</td>
+					<td><a href="edit?id=${user.id}">Modificar</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${user.id}">Eliminar</a>
+					</td>
+					</tr>
+				</c:forEach>
+			</table></center>
+			</div>
+		</div>
+	</section>
+	
+	
+    <!--  Formulario de contacto
     <div id="contact-info">
       <div class="container">
         <div class="row">
@@ -190,6 +237,8 @@
         </div>
       </div>
     </div>
+    -->
+    
   </div>
   <footer class="footer">
     <div class="container">
@@ -220,13 +269,19 @@
   <script src="static/contactform/contactform.js"></script>
 
 
+<!-- Visualización de resultados primario  -->
+
+<!--  -
 		<h4><a href="alta">DAR DE ALTA A UN USUARIO</a></h4>
 		<div class="banner">
 		<div class="w3l_banner_nav_left">
 			<nav class="navbar nav_bottom">
+-->			
 			 <!-- Brand and toggle get grouped for better mobile display --> 
 			   <!-- Collect the nav links, forms, and other content for toggling -->
 			   <!--  CATEGORIAS DESDE LA BASE DE DATOS -->
+			   
+<!--  
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav nav_1">
 						<c:forEach items="${departamentos}" var="departamento">
@@ -234,7 +289,10 @@
 						</c:forEach>
 					
 					</ul>
-				 </div><!-- /.navbar-collapse -->
+				 </div>
+-->
+				 <!-- /.navbar-collapse -->
+<!-- 			
 			</nav>
 		</div>
 		<div class="w3l_banner_nav_right">
@@ -261,8 +319,6 @@
 		</table>
 		</div>
 	</div>
-		
-	</div>
-
+-->
 </body>
 </html>
