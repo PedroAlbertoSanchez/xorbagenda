@@ -106,20 +106,21 @@
 				<h3 class="subs-title text-center">Detalle del contacto</h3>
 				<!-- comendtado por mi <div class="w3l_banner_nav_right"> tabla de abajo <table border="1">-->
 				
-				<table class="noelia" border="3px">
+				<table class="noelia" border="0px" WIDTH="700">
 					<tr>
 						<th>Nombre</th>
-						<th>Apellido 1</th>
-						<th>Apellido 2</th>
+						<th>Pirmer Apellido</th>
+						<th>Segundo Apellido</th>
 						<th>Telefono</th>
-						<th>dni</th>
-						<th>fecha de nacimiento</th>
-						<th>direccion</th>
-						<th>codigo empleado</th>
-						<th>fecha de alta</th>
+						<th>DNI</th>
+						<th>Fecha de nacimiento</th>
+						<th> Direccion</th>
+						<th>Codigo empleado</th>
+						<th>Fecha de alta</th>
 						<th>salario</th>
-						<th>departamento</th>
-						<th>categoria</th>
+						<th>Departamento</th>
+						<th>Categoria</th>
+						<th>Acciones</th>
 					</tr>
 
 
@@ -136,8 +137,8 @@
 						<td>${Persona.empleado.salario}</td>
 						<td>${Persona.empleado.departamento.nombre}</td>
 						<td>${Persona.empleado.categoria.nombre}</td>
-						<td><a href="edit?id=${user.id}">Modificar</a>
-							&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${user.id}">Eliminar</a>
+						<td><a href="update?id=${Persona.idpersonas}">Modificar</a>
+									&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${Persona.idpersonas}">Eliminar</a>
 						</td>
 					</tr>
 				</table>
