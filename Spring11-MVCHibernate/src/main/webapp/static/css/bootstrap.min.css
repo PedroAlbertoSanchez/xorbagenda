@@ -113,7 +113,7 @@ code, kbd, pre, samp {
 button, input, optgroup, select, textarea {
 	margin: 0;
 	font: inherit;
-	color: inherit
+	color: red;
 }
 
 button {
@@ -1401,6 +1401,7 @@ body {
 	color: #333;
 	background-color: #fff
 }
+
 
 button, input, select, textarea {
 	font-family: inherit;
