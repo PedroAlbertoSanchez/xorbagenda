@@ -157,7 +157,9 @@ public class ServImpl implements UserService {
 
 	}
 
-
+	public void delete(int id){
+		datos.delete(id);
+	}
 	
 
 }
