@@ -25,16 +25,14 @@ public class Superusuario implements Serializable{
 	
 	@Size(min=3, max=30)
 	private String nombre;
-
-	@Size(min=3, max=30) 
+ 
 	private String apellido1;
 	
 	private String apellido2;
-	
-	@Size(min=9, max=9)
+
 	private String dni;
 	
-	@NotNull
+
 	private String fechaNacimiento;
 	
 	private int iddirecciones1;
@@ -64,7 +62,7 @@ public class Superusuario implements Serializable{
 	
 	private int idtelefonos1;
 	
-	@Size(min=9, max=15)
+
 	private String telefono1;
 	
 	private int idtelefonos2;
@@ -74,15 +72,15 @@ public class Superusuario implements Serializable{
 	private int idtelefonos3;
 	
 	private String telefono3;
-	@Size(min=3, max=5)
+
 	private String codEmpleado;
-	@Size(min=3, max=10)
+
 	private String salario;
 	
-	@NotEmpty
+
 	private String categoria;
 	
-	@NotEmpty
+
 	private String departamento;
 
 
