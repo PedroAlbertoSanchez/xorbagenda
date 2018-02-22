@@ -25,4 +25,5 @@ public interface IDAO {
 	public Categoria buscarCategoria(String nombre);
 	public void save(Persona p);
 	public void delete(int id);
+	/*public int getID(String nombre);*/
 }

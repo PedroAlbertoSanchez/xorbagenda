@@ -9,12 +9,15 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,8 +54,8 @@ public class Engendrator8000 {
 	
 	
 	/**
-	 * 
-	 * @param busqueda:Busca en el listado de personas, los guarda en el objeto model y lo envia a la página Index, mostrandolos en un listado
+	 * Manda buscar el listado de personas, los guarda en el objeto model y lo envia a la página Index, mostrandolos en un listado
+	 * @param busqueda
 	 * @return model 
 	 * @throws Exception
 	 */
@@ -71,8 +74,8 @@ public class Engendrator8000 {
 	
 	
 	/**
-	 * 
-	 * @param busqueda: Busca una persona mediante el formulario de busqueda guardandolo en un objeto model y mostrando el detalle.  
+	 *  Busca una persona, que coincida con el formulario de busqueda guardandolo en un objeto model y mostrando el detalle. 
+	 * @param  
 	 * 
 	 * @return model:  devuelve una persona 
 	 */
@@ -84,12 +87,15 @@ public class Engendrator8000 {
 		ModelAndView model = new ModelAndView("Index");
 		model.addObject("listaPersonas", listaPersonas);
 		model.addObject("departamentos", listaDepartamentos);
+		if (listaPersonas.isEmpty()){
+		model.addObject("noResultadoBusqueda", "true");
+		}
 		return model;
 	}
 	
 	/**
-	 * 
-	 * @param request: Muestra los detalles de una persona al hacer click en su nombre
+	 * Busca la persona que coincide con el id que le llega y lo muestra.
+	 * @param request.
 	 * 
 	 * @return model: devuelve una persona 
 	 */
@@ -104,6 +110,13 @@ public class Engendrator8000 {
 		model.addObject("departamentos", listaDepartamentos);
 		return model;
 	}
+	
+	/**
+	 * Recibe el nombre de un departamento y muestra todos las personas/empleados en dicho departamento
+	 * @param request
+	 * @param busqueda
+	 * @return pagina
+	 */
 	@RequestMapping(value = "/bucarPorDepartamento", method = RequestMethod.GET)
 	public ModelAndView buscarPorDepartamento(HttpServletRequest request, Busqueda busqueda) {
 		Set<Persona> listaPersonas = userService.busquedaPorDepartamento(request.getParameter("departamento"));
@@ -115,6 +128,10 @@ public class Engendrator8000 {
 		model.addObject("departamentos", listaDepartamentos);
 		return model;
 	}
+	/**
+	 * Hace redirect a la pagina alta y le pasa el modelo vacio, superusuario(persona+empleado)
+	 * @return pagina
+	 */
 	@RequestMapping(value = "/alta", method = RequestMethod.GET)
 	public ModelAndView Alta() {
 		Superusuario superusu=new Superusuario();
@@ -134,15 +151,43 @@ public class Engendrator8000 {
 		model.addObject("usuario", superusu);
 		return model;
 	}
-	
+	/**
+	 * guarda o updatea la persona en la base de datos y lleva de vuelta a index
+	 * @param usuario
+	 * @param result
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("usuario") Superusuario usuario) {
+	public String save(@Valid Superusuario usuario,BindingResult result, ModelMap model) {
+		if (result.hasErrors()) {
+			model.addAttribute("usuario", usuario);
+			Set<Departamento> listaDep=userService.listadoDepartamento();
+			Set<Categoria> listaCat=userService.listadoCategoria();
+			List<String> listaCategoria=new ArrayList<>();
+			List<String> listaDepartamentos=new ArrayList<>();
+			for (Departamento dep:listaDep){
+				listaDepartamentos.add(dep.getNombre());
+			}
+			for (Categoria dep:listaCat){
+				listaCategoria.add(dep.getNombre());
+			}
+			model.addAttribute("categorias", listaCategoria);
+			model.addAttribute("departamentos", listaDepartamentos);
+			System.out.println("--- Hay algunos errores");
+			return "Alta";
+		}
 		logger.info("entro en save y intento inserta este superusuario"+ usuario);
 		userService.saveOrUpdate(usuario); 
-		ModelAndView model = new ModelAndView("redirect:/"); 
-		return model; 
+		return "redirect:/"; 
 	}
 	
+	/**
+	 * busca la persona a updatear y la muestra en el formulario
+	 * @param superusu
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView Update(Superusuario superusu,HttpServletRequest request) {
 		Set<Departamento> listaDep=userService.listadoDepartamento();
@@ -164,6 +209,11 @@ public class Engendrator8000 {
 		return model;
 	}
 	
+	/**
+	 * Recibe la id de usuario a eliminar, manda servicios para su ejecucion y redirecciona a index.
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView Delete(HttpServletRequest request){
 		

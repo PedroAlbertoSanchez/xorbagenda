@@ -53,11 +53,10 @@ public class DAO implements IDAO {
 
 	/**
 	 * Constructor
-	 * 
-	 * @param sessionFactory:
-	 *            implementamos una factoría de de sesiones para crear objetos
-	 *            Session que proporciona métodos para recuperar y guardar la
+	 * implementamos una factoría de de sesiones para crear objetos Session que proporciona métodos para recuperar y guardar la
 	 *            información de los objetos en la Base de Datos.
+	 * @param sessionFactory
+	 *            
 	 * 
 	 */
 	public DAO(SessionFactory sessionFactory) {
@@ -66,7 +65,7 @@ public class DAO implements IDAO {
 
 	/**
 	 * ArrayList
-	 * 
+	 * Busca persona que coincidan con la busqueda
 	 * @return devuelve una lista de personas
 	 * @param String de Persona
 	 * @see com.proyecto.spring.datos.IDAO#busquedaPersona(java.lang.String)
@@ -137,6 +136,7 @@ public class DAO implements IDAO {
 	}
 
 	/**
+	 * 
 	 * @see com.proyecto.spring.datos.IDAO#listadoPersona()
 	 * @return devuelve una lista de personas con valores no repetidos
 	 */
@@ -198,7 +198,11 @@ public class DAO implements IDAO {
 		session.close();
 		return personaSet;
 	}
-
+	
+	/**
+	 * Busca en la base de datos y saca el listado de categorias
+	 * @return listado de categorias
+	 */
 	@Override
 	public Set<Categoria> listadoCategoria() {
 		Session session = sessions.openSession();
@@ -216,14 +220,22 @@ public class DAO implements IDAO {
 	
 	
 	
-	
+	/**
+	 * Guarda o actualiza una persona
+	 * @param recibe una persona
+	 * @return void
+	 */
 	@Override
 	@Transactional
 	public void saveOrUpdate(Persona persona) {
 		sessions.getCurrentSession().saveOrUpdate(persona);
 
 	}
-
+	/**
+	 * busca un departamento por nombre
+	 * @param String nombre
+	 * @return departamento
+	 */
 	@Override
 	public Departamento buscarDepartamento(String nombre) {
 		Session session = sessions.openSession();
@@ -238,7 +250,10 @@ public class DAO implements IDAO {
 		session.close();
 		return dep;
 	}
-
+	/**
+	 * busca una categoria en la base de datos por nombre
+	 * @return categoria
+	 */
 	@Override
 	public Categoria buscarCategoria(String nombre) {
 		Session session = sessions.openSession();
@@ -253,20 +268,47 @@ public class DAO implements IDAO {
 		session.close();
 		return dep;
 	}
+	
+	@Override
+	@Transactional
 	public void save(Persona p){
-		sessions.getCurrentSession().saveOrUpdate(p);
+		sessions.getCurrentSession().save(p);
 	}
 
-
+	/**
+	 * elimina la persona que coincide con el idz<
+	 * @param int id
+	 * @return void
+	 */
 	@Override
 	@Transactional
 	public void delete(int id){
 		Persona persona = new Persona();
 		persona.setIdpersonas(id);
-		//sessions.getCurrentSession().delete(persona);
+		sessions.getCurrentSession().delete(persona);
 		logger.info("Entra metodo DAO borrar.");
+
 		
 	}
+
+	/*@Override
+	@Transactional
+	public int getID(String nombre) {
+		Session session = sessions.openSession();
+		// HQL
+		Query query = session.createQuery(
+				"from Persona per where per.nombre LIKE :busqueda ");
+		query.setString("busqueda", nombre);
+		// devuelve el objeto. Si no hay devuelve null
+		@SuppressWarnings("unchecked")
+		Persona per = (Persona) query.uniqueResult();
+		logger.info(per);
+		session.close();
+		
+		return ;
+		}*/
+	
+	
 	
 
 
