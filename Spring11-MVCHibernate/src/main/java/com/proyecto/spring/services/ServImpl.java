@@ -87,9 +87,20 @@ public class ServImpl implements UserService {
 		//tel 1 , tel 2, tel 3
 		//crearte new HashSet
 		Set <Telefono> set = new HashSet<Telefono>();
-		set.add(tel1);
-		set.add(tel2);
-		set.add(tel3); 
+		
+		if( tel1.getTelefono() !="" ){
+			set.add(tel1);
+		}
+		
+		if( tel2.getTelefono() != ""){
+			set.add(tel2);
+		}
+		
+		if( tel3.getTelefono() != ""){
+			set.add(tel3);
+		}
+		
+		 
 		//añadir tel 1,... al hashset
 		
 		//introducir el set en el contructor
@@ -101,10 +112,18 @@ public class ServImpl implements UserService {
 		Direccione dir3 = new Direccione(su.getIddirecciones3(),su.getCodPostal3(),su.getDireccion3(),su.getLocalidad3(),su.getProvincia3(),persona); 
 		
 		Set<Direccione> set2 = new HashSet <Direccione>(); 
-		set2.add(dir1);
-		set2.add(dir2);
-		set2.add(dir3); 
 		
+		if ( dir1.getCodPostal() != "" ){
+			set2.add(dir1);
+		}
+		
+		if ( dir2.getCodPostal() != "" ){
+			set2.add(dir2);
+		}
+
+		if ( dir3.getCodPostal() != "" ){
+			set2.add(dir3);
+		}		
 		
 		Departamento dep=datos.buscarDepartamento(su.getDepartamento());
 		Categoria categoria = datos.buscarCategoria(su.getCategoria()); 
@@ -120,6 +139,7 @@ public class ServImpl implements UserService {
 			logger.info("intentando guardar persona2");
 			datos.save(persona2);
 		}
+		
 		logger.info("intentando guardar persona");
 		datos.saveOrUpdate(p);
 	
