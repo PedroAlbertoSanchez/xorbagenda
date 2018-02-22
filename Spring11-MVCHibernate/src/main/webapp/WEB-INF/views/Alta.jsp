@@ -38,7 +38,7 @@
 			<div class="container wow fadeInUp delay-03s">
 				<div class="row">
 					<div class="logo text-center">
-						<img src="static/img/agenda.png" alt="logo">
+						<a href="juu"><img src="static/img/agenda.png" alt="logo"></a>
 						<h2 class="subs-title text-center">Xorbagenda</h2>
 					</div>
 
@@ -48,7 +48,6 @@
 
 					<div align="center">
 
-						<div>hola</div>
 						<form:form action="save" method="post" modelAttribute="usuario">
 							<form:hidden path="idpersonas" />
 							<form:hidden path="idempleados" />
@@ -101,11 +100,14 @@
 
 										<tr>
 											<td>Código de Empleado (*):</td>
+											<td>Salario (*):</td>
 											<td>Departamento (*):</td>
 											<td>Categoria (*):</td>
+											
 										</tr>
 										<tr>
 											<td><form:input path="codEmpleado" /></td>
+											<td><form:input path="salario" /></td>
 											<td><form:select path="departamento" id="departamento"
 													class="form-control input-sm">
 													<form:option value="">Select Departamento</form:option>
