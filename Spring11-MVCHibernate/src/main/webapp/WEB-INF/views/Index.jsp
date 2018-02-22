@@ -184,8 +184,8 @@
 					<td><a href="mostrarDetalle?idPersona=${Persona.idpersonas}">${Persona.nombre}</a></td>
 					<td>${Persona.apellido1} ${Persona.apellido2}</td>
 					<td>${Persona.telefonos}</td>
-					<td><a href="edit?id=${user.id}">Modificar</a>
-						&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${user.id}">Eliminar</a>
+					<td><a href="update?id=${Persona.idpersonas}">Modificar</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${Persona.idpersonas}">Eliminar</a>
 					</td>
 					</tr>
 				</c:forEach>

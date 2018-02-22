@@ -253,8 +253,11 @@ public class DAO implements IDAO {
 		session.close();
 		return dep;
 	}
+	
+	@Override
+	@Transactional
 	public void save(Persona p){
-		sessions.getCurrentSession().saveOrUpdate(p);
+		sessions.getCurrentSession().save(p);
 	}
 
 
@@ -267,6 +270,25 @@ public class DAO implements IDAO {
 		logger.info("Entra metodo DAO borrar.");
 		
 	}
+
+	/*@Override
+	@Transactional
+	public int getID(String nombre) {
+		Session session = sessions.openSession();
+		// HQL
+		Query query = session.createQuery(
+				"from Persona per where per.nombre LIKE :busqueda ");
+		query.setString("busqueda", nombre);
+		// devuelve el objeto. Si no hay devuelve null
+		@SuppressWarnings("unchecked")
+		Persona per = (Persona) query.uniqueResult();
+		logger.info(per);
+		session.close();
+		
+		return ;
+		}*/
+	
+	
 	
 
 

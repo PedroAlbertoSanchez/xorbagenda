@@ -1,5 +1,6 @@
 package com.proyecto.spring.services;
 
+import java.sql.Timestamp;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
@@ -80,50 +81,64 @@ public class ServImpl implements UserService {
 
 	@Override
 	public void saveOrUpdate(Superusuario su) {
-		Persona persona=new Persona(su.getIdpersonas());
-		Telefono tel1 = new Telefono(su.getIdtelefonos1(),su.getTelefono1(),persona);//parseo int a String con los tres telefonos o cambiar en superusuario el telefono de int a string  y añadir 
-		Telefono tel2 = new Telefono(su.getIdtelefonos2(),su.getTelefono2(),persona);
-		Telefono tel3 = new Telefono(su.getIdtelefonos3(),su.getTelefono3(),persona); 
+		 
 		//tel 1 , tel 2, tel 3
 		//crearte new HashSet
 		Set <Telefono> set = new HashSet<Telefono>();
-		set.add(tel1);
-		set.add(tel2);
-		set.add(tel3); 
+		
 		//añadir tel 1,... al hashset
 		
 		//introducir el set en el contructor
 		
 		//Todo lo mismp con direccion 
 		
-		Direccione dir1 = new Direccione(su.getIddirecciones1(),su.getCodPostal1(),su.getDireccion1(),su.getLocalidad1(),su.getProvincia1(),persona);  
-		Direccione dir2 = new Direccione(su.getIddirecciones2(),su.getCodPostal2(),su.getDireccion2(),su.getLocalidad2(),su.getProvincia2(),persona); 
-		Direccione dir3 = new Direccione(su.getIddirecciones3(),su.getCodPostal3(),su.getDireccion3(),su.getLocalidad3(),su.getProvincia3(),persona); 
-		
-		Set<Direccione> set2 = new HashSet <Direccione>(); 
-		set2.add(dir1);
-		set2.add(dir2);
-		set2.add(dir3); 
 		
 		
+		Set<Direccione> set2 = new HashSet <Direccione>();
+		logger.info(su.getFechaNacimiento());
 		Departamento dep=datos.buscarDepartamento(su.getDepartamento());
 		Categoria categoria = datos.buscarCategoria(su.getCategoria()); 
 		Empleado emp = new Empleado (su.getCodEmpleado(), su.getSalario(), categoria, dep); 
 		emp.setIdempleados(su.getIdempleados());
 		Date date= new Date();
 		Persona p = new Persona (su.getApellido1(),su.getApellido2(),su.getDni(),date, su.getNombre(), set2,emp, set); 
+		Telefono tel1 = new Telefono(su.getIdtelefonos1(),su.getTelefono1(),p);//parseo int a String con los tres telefonos o cambiar en superusuario el telefono de int a string  y añadir 
+		Telefono tel2 = new Telefono(su.getIdtelefonos2(),su.getTelefono2(),p);
+		Telefono tel3 = new Telefono(su.getIdtelefonos3(),su.getTelefono3(),p);
+		set.add(tel1);
+		set.add(tel2);
+		set.add(tel3); 
+		Direccione dir1 = new Direccione(su.getIddirecciones1(),su.getCodPostal1(),su.getDireccion1(),su.getLocalidad1(),su.getProvincia1(),p);  
+		Direccione dir2 = new Direccione(su.getIddirecciones2(),su.getCodPostal2(),su.getDireccion2(),su.getLocalidad2(),su.getProvincia2(),p); 
+		Direccione dir3 = new Direccione(su.getIddirecciones3(),su.getCodPostal3(),su.getDireccion3(),su.getLocalidad3(),su.getProvincia3(),p); 
+		set2.add(dir1);
+		set2.add(dir2);
+		set2.add(dir3); 
 		p.setIdpersonas(su.getIdpersonas());
-		if (p.getIdpersonas()==0){
+		/*if (p.getIdpersonas()==0){
 			Persona persona2=new Persona();
-			persona2.setNombre("");
+			persona2.setIdpersonas(0);
+			persona2.setNombre("nombreInconfundible");
 			persona2.setApellido1("");
+			persona2.setApellido2("");
+			persona2.setDni("");
+			persona2.setFechaNacimiento(date);
+			Empleado empleado=new Empleado();
+			empleado.setIdempleados(0);
+			empleado.setCodEmpleado("");
+			empleado.setCategoria(categoria);
+			empleado.setDepartamento(dep);
+			empleado.setSalario("");
+			empleado.setPersona(persona2);
+			persona2.setEmpleado(empleado);
 			logger.info("intentando guardar persona2");
 			datos.save(persona2);
+			logger.info("persona2 guardada");
+			p.setIdpersonas(datos.getID("nombreInconfundible"));
 		}
+		*/
 		logger.info("intentando guardar persona");
-		datos.saveOrUpdate(p);
-	
-		
+		datos.saveOrUpdate(p);		
 	}	
 
 	@Override
@@ -190,12 +205,9 @@ public class ServImpl implements UserService {
 				p.getFechaNacimiento().toString(),codPostal1,  localidad1, provincia1,	direccion1,iddirecciones1,codPostal2,  localidad2, provincia2,direccion2,iddirecciones2,codPostal3,  localidad3, provincia3,direccion3,iddirecciones3,idtelefonos1,telefono1,
 				idtelefonos2,telefono2,idtelefonos3,telefono3,p.getEmpleado().getCodEmpleado(),p.getEmpleado().getSalario(),
 				p.getEmpleado().getCategoria().getNombre(),p.getEmpleado().getDepartamento().getNombre());
-		
 		return sup;
-		
-
 	}
-
+	
 	public void delete(int id){
 		datos.delete(id);
 	}
