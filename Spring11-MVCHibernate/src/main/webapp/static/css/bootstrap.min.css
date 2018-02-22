@@ -172,7 +172,37 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	
 	
 }
+/* desde aqui tabla */ 
+table.tableIndex {
+	 
+	width: 100%;
+   border: 1000px solid #000;
+	
+}
 
+.thIndex {
+	
+	 width: 25%;
+   text-align: left;
+   vertical-align: top;
+   border: 1px solid #000;
+   border-spacing: 0;
+   padding: 0.9em;
+	
+}
+
+
+.tdIndex {
+   width: 25%;
+   text-align: left;
+   vertical-align: top;
+   border: 1px solid #000;
+   border-spacing: 0;
+   padding: 0.9em;
+}
+
+
+/* hasta aqui tabla*/ 
 input {
 	line-height: normal
 }
