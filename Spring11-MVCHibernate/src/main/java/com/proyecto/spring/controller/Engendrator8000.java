@@ -87,6 +87,9 @@ public class Engendrator8000 {
 		ModelAndView model = new ModelAndView("Index");
 		model.addObject("listaPersonas", listaPersonas);
 		model.addObject("departamentos", listaDepartamentos);
+		if (listaPersonas.isEmpty()){
+		model.addObject("noResultadoBusqueda", "true");
+		}
 		return model;
 	}
 	

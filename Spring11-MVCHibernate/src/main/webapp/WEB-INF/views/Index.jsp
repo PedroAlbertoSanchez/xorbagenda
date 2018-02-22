@@ -69,6 +69,11 @@
 							type="submit">
 					</form:form>
 					<p class="sub-p">También sirve para buscar otros seres humanos.</p>
+          		<c:if test="${noResultadoBusqueda}">
+			<div class="alert alert-warning"> NO SE HA ENCONTRADO BUSQUEDA!!! </div>
+		</c:if>
+          
+          
 				</div>
 			</div>
 		</div>
@@ -97,8 +102,8 @@
 									href="mostrarDetalle?idPersona=${Persona.idpersonas}">${Persona.nombre}</a></td>
 								<td>${Persona.apellido1}${Persona.apellido2}</td>
 								<td>${Persona.telefonos}</td>
-								<td><a href="edit?id=${user.id}">Modificar</a>
-									&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${user.id}">Eliminar</a>
+								<td><a href="update?id=${Persona.idpersonas}">Modificar</a>
+									&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${Persona.idpersonas}">Eliminar</a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -120,27 +125,7 @@
 
 
 
-		<!--  Esta es el area de botones de redes sociales
-    <section>
-      <div class="container">
-        <div class="row bort text-center">
-          <div class="social">
-            <ul>
-              <li>
-                <a href=""><i class="fa fa-facebook"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fa fa-twitter"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fa fa-linkedin"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-    -->
+   
 
 
 		<section id="about" class="section-padding">
