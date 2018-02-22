@@ -266,7 +266,7 @@ public class DAO implements IDAO {
 	public void delete(int id){
 		Persona persona = new Persona();
 		persona.setIdpersonas(id);
-		//sessions.getCurrentSession().delete(persona);
+		sessions.getCurrentSession().delete(persona);
 		logger.info("Entra metodo DAO borrar.");
 		
 	}
