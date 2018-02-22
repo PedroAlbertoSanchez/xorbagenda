@@ -162,6 +162,14 @@ public class Engendrator8000 {
 		return model;
 	}
 	
-	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView Delete(HttpServletRequest request){
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		userService.delete(id);
+		logger.info("ID:" + id);
+		return new ModelAndView("redirect:/");
+	}
+
 	
 }

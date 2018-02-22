@@ -54,7 +54,7 @@
 				</tr>
 				<tr>
 					<td>fechaNacimiento:</td>
-					<td><form:input path="fechaNacimiento"  id="date" type="date" /></td>
+					<td><form:input path="fechaNacimiento"  id="date" type="date" max="1979-12-31" /></td>
 				</tr>
 				<tr>
 					<td>direccion 1:</td>

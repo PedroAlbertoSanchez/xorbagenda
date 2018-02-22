@@ -24,4 +24,5 @@ public interface IDAO {
 	public Departamento buscarDepartamento(String nombre);
 	public Categoria buscarCategoria(String nombre);
 	public void save(Persona p);
+	public void delete(int id);
 }

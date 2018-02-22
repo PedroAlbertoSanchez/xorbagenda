@@ -18,4 +18,5 @@ public interface UserService {
 	public Set<Categoria> listadoCategoria();
 	public void saveOrUpdate(Superusuario superusu);
 	public Superusuario montarPersona(int id);
+	public void delete(int id);
 }
