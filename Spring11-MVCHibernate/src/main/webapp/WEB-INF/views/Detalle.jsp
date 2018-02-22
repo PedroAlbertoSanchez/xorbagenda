@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -82,8 +82,8 @@
 						<td>${Persona.empleado.salario}</td>
 						<td>${Persona.empleado.departamento.nombre}</td>
 						<td>${Persona.empleado.categoria.nombre}</td>
-						<td><a href="edit?id=${user.id}">Modificar</a>
-							&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${user.id}">Eliminar</a>
+						<td><a href="update?id=${Persona.idpersonas}">Modificar</a>
+							&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${Persona.idpersonas}">Eliminar</a>
 						</td>
 					</tr>
 				</table>
