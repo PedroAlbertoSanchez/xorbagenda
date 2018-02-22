@@ -9,12 +9,15 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -136,11 +139,27 @@ public class Engendrator8000 {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("usuario") Superusuario usuario) {
+	public String save(@Valid Superusuario usuario,BindingResult result, ModelMap model) {
+		if (result.hasErrors()) {
+			model.addAttribute("usuario", usuario);
+			Set<Departamento> listaDep=userService.listadoDepartamento();
+			Set<Categoria> listaCat=userService.listadoCategoria();
+			List<String> listaCategoria=new ArrayList<>();
+			List<String> listaDepartamentos=new ArrayList<>();
+			for (Departamento dep:listaDep){
+				listaDepartamentos.add(dep.getNombre());
+			}
+			for (Categoria dep:listaCat){
+				listaCategoria.add(dep.getNombre());
+			}
+			model.addAttribute("categorias", listaCategoria);
+			model.addAttribute("departamentos", listaDepartamentos);
+			System.out.println("--- Hay algunos errores");
+			return "Alta";
+		}
 		logger.info("entro en save y intento inserta este superusuario"+ usuario);
 		userService.saveOrUpdate(usuario); 
-		ModelAndView model = new ModelAndView("redirect:/"); 
-		return model; 
+		return "redirect:/"; 
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)

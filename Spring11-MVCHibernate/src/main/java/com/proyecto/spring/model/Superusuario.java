@@ -14,67 +14,65 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Superusuario implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int idpersonas;
 	
 	private int idempleados;
 	
 	@Size(min=3, max=30)
-	@NotNull
 	private String nombre;
 
 	@Size(min=3, max=30) 
-	@NotNull
 	private String apellido1;
-	@Size(min=3, max=30)
+	
 	private String apellido2;
-	@Size(min=7, max=10)
-	@NotNull
+	
+	@Size(min=9, max=9)
 	private String dni;
 	
-	@DateTimeFormat(pattern="yyyy/dd/MM") 
-	@Past @NotNull
+	@NotNull
 	private String fechaNacimiento;
 	
 	private int iddirecciones1;
-	@Size(min=5, max=5)
 	private String codPostal1;
-	@Size(min=3, max=15)
 	private String localidad1;
-	@Size(min=3, max=15)
 	private String provincia1;
-	@Size(min=5, max=100)
 	private String direccion1;
 	
 	private int iddirecciones2;
-	@Size(min=5, max=5)
 	private String codPostal2;
-	@Size(min=3, max=15)
+	
 	private String localidad2;
-	@Size(min=3, max=15)
+
 	private String provincia2;
-	@Size(min=5, max=100)
+	
 	private String direccion2;
 	
 	private int iddirecciones3;
-	@Size(min=5, max=5)
+	
 	private String codPostal3;
-	@Size(min=3, max=15)
+	
 	private String localidad3;
-	@Size(min=3, max=15)
+	
 	private String provincia3;
-	@Size(min=5, max=100)
+	
 	private String direccion3;
 	
 	private int idtelefonos1;
+	
 	@Size(min=9, max=15)
 	private String telefono1;
 	
 	private int idtelefonos2;
-	@Size(min=9, max=15)
+	
 	private String telefono2;
 	
 	private int idtelefonos3;
-	@Size(min=9, max=15)
+	
 	private String telefono3;
 	@Size(min=3, max=5)
 	private String codEmpleado;
