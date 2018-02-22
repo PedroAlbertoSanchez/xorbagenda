@@ -48,6 +48,8 @@ public class Engendrator8000 {
 
 		}
 	}
+	
+	
 	/**
 	 * 
 	 * @param busqueda:Busca en el listado de personas, los guarda en el objeto model y lo envia a la página Index, mostrandolos en un listado
@@ -170,6 +172,13 @@ public class Engendrator8000 {
 		logger.info("ID:" + id);
 		return new ModelAndView("redirect:/");
 	}
-
+	
+	/*
+	@RequestMapping("/**")
+	public ModelAndView error404 () throws Exception {
+		ModelAndView model = new ModelAndView("Error404");
+		return model;	
+	}
+*/
 	
 }
