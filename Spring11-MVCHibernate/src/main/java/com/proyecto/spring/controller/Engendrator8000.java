@@ -58,7 +58,7 @@ public class Engendrator8000 {
 	public ModelAndView handleRequest(Busqueda busqueda) throws Exception {
 		ModelAndView model = new ModelAndView("Index");
 		Set<Persona> listaPersonas = userService.listadoPersona();
-		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
+		Set<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		model.addObject("busqueda", busqueda);
 		model.addObject("listaPersonas", listaPersonas);
 		model.addObject("departamentos", listaDepartamentos);
@@ -78,7 +78,7 @@ public class Engendrator8000 {
 	public ModelAndView busqueda(@ModelAttribute Busqueda busqueda) {
 		List<Persona> listaPersonas = userService.busquedaPersona(busqueda.getBusqueda());
 		logger.info("Entrando en el metodo y buscando a: " + busqueda.getBusqueda());
-		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
+		Set<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		ModelAndView model = new ModelAndView("Index");
 		model.addObject("listaPersonas", listaPersonas);
 		model.addObject("departamentos", listaDepartamentos);
@@ -95,7 +95,7 @@ public class Engendrator8000 {
 	@RequestMapping(value = "/mostrarDetalle", method = RequestMethod.GET)
 	public ModelAndView mostrarDetalle(HttpServletRequest request, Busqueda busqueda ) {
 		Persona persona=userService.mostrarDetalle(request.getParameter("idPersona"));
-		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
+		Set<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		ModelAndView model = new ModelAndView("Detalle");
 		model.addObject("Persona", persona);
 		model.addObject("busqueda", busqueda);
@@ -106,7 +106,7 @@ public class Engendrator8000 {
 	public ModelAndView buscarPorDepartamento(HttpServletRequest request, Busqueda busqueda) {
 		Set<Persona> listaPersonas = userService.busquedaPorDepartamento(request.getParameter("departamento"));
 		logger.info("Entrando en el metodo y buscando a: " + request.getParameter("departamento"));
-		List<Departamento> listaDepartamentos=userService.listadoDepartamento();
+		Set<Departamento> listaDepartamentos=userService.listadoDepartamento();
 		ModelAndView model = new ModelAndView("Index");
 		model.addObject("listaPersonas", listaPersonas);
 		model.addObject("busqueda", busqueda);
@@ -114,9 +114,10 @@ public class Engendrator8000 {
 		return model;
 	}
 	@RequestMapping(value = "/alta", method = RequestMethod.GET)
-	public ModelAndView Alta(Superusuario superusu) {
-		List<Departamento> listaDep=userService.listadoDepartamento();
-		List<Categoria> listaCat=userService.listadoCategoria();
+	public ModelAndView Alta() {
+		Superusuario superusu=new Superusuario();
+		Set<Departamento> listaDep=userService.listadoDepartamento();
+		Set<Categoria> listaCat=userService.listadoCategoria();
 		ModelAndView model = new ModelAndView("Alta");
 		List<String> listaCategoria=new ArrayList<>();
 		List<String> listaDepartamentos=new ArrayList<>();
@@ -136,14 +137,14 @@ public class Engendrator8000 {
 	public ModelAndView save(@ModelAttribute("usuario") Superusuario usuario) {
 		logger.info("entro en save y intento inserta este superusuario"+ usuario);
 		userService.saveOrUpdate(usuario); 
-		ModelAndView model = new ModelAndView(""); 
+		ModelAndView model = new ModelAndView("redirect:/"); 
 		return model; 
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView Update(Superusuario superusu,HttpServletRequest request) {
-		List<Departamento> listaDep=userService.listadoDepartamento();
-		List<Categoria> listaCat=userService.listadoCategoria();
+		Set<Departamento> listaDep=userService.listadoDepartamento();
+		Set<Categoria> listaCat=userService.listadoCategoria();
 		superusu=userService.montarPersona(Integer.parseInt(request.getParameter("id")));
 		logger.info("este es superusuario(update)"+superusu);
 		ModelAndView model = new ModelAndView("Alta");

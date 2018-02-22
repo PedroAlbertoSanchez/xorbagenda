@@ -27,7 +27,7 @@ public class Direccione implements Serializable {
 	private String provincia;
 
 	//bi-directional many-to-one association to Persona
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="idPersona")
 	private Persona persona;
 
@@ -37,6 +37,15 @@ public class Direccione implements Serializable {
 	public Direccione(String direccion1) {
 		this.direccion = direccion1; 
 		// TODO Auto-generated constructor stub
+	}
+
+	public Direccione(int iddirecciones,String codPostal, String direccion, String localidad, String provincia, Persona persona) {
+		this.iddirecciones=iddirecciones;
+		this.codPostal = codPostal;
+		this.direccion = direccion;
+		this.localidad = localidad;
+		this.provincia = provincia;
+		this.persona=persona;
 	}
 
 	public int getIddirecciones() {

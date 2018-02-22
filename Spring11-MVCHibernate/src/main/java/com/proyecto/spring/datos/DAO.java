@@ -7,11 +7,14 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.TransientObjectException;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -157,14 +160,19 @@ public class DAO implements IDAO {
 	 * @see com.proyecto.spring.datos.IDAO#listadoDepartamento()
 	 * @return listado de departamentos 
 	 */
-	public List<Departamento> listadoDepartamento() {
+	public Set<Departamento> listadoDepartamento() {
 		Session session = sessions.openSession();
 		Criteria criteria = session.createCriteria(Departamento.class);
 		@SuppressWarnings("unchecked")
 		List<Departamento> listadoDepartamentos = criteria.list();
+		Set<Departamento> personaSet = new HashSet<>();
+		for (Departamento persona : listadoDepartamentos) {
+			personaSet.add(persona);
+		}
 		session.close();
+		
 
-		return listadoDepartamentos;
+		return personaSet;
 	}
 
 	/**
@@ -192,13 +200,17 @@ public class DAO implements IDAO {
 	}
 
 	@Override
-	public List<Categoria> listadoCategoria() {
+	public Set<Categoria> listadoCategoria() {
 		Session session = sessions.openSession();
 		Criteria criteria = session.createCriteria(Categoria.class);
 		@SuppressWarnings("unchecked")
 		List<Categoria> listadoCategoria =  criteria.list();
 		session.close();
-		return listadoCategoria;
+		Set<Categoria> personaSet = new HashSet<>();
+		for (Categoria persona : listadoCategoria) {
+			personaSet.add(persona);
+		}
+		return personaSet;
 	}
 	
 	
@@ -209,7 +221,7 @@ public class DAO implements IDAO {
 	@Transactional
 	public void saveOrUpdate(Persona persona) {
 		sessions.getCurrentSession().saveOrUpdate(persona);
-		
+
 	}
 
 	@Override
@@ -223,6 +235,7 @@ public class DAO implements IDAO {
 		// devuelve el objeto. Si no hay devuelve null
 		@SuppressWarnings("unchecked")
 		Departamento dep = (Departamento) query.uniqueResult();
+		session.close();
 		return dep;
 	}
 
@@ -237,7 +250,11 @@ public class DAO implements IDAO {
 		// devuelve el objeto. Si no hay devuelve null
 		@SuppressWarnings("unchecked")
 		Categoria dep = (Categoria) query.uniqueResult();
+		session.close();
 		return dep;
+	}
+	public void save(Persona p){
+		sessions.getCurrentSession().saveOrUpdate(p);
 	}
 
 
