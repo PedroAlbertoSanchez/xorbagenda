@@ -86,11 +86,21 @@ public class ServImpl implements UserService {
 		//crearte new HashSet
 		Set <Telefono> set = new HashSet<Telefono>();
 		
+
+		
+		
+
 		//añadir tel 1,... al hashset
 		
 		//introducir el set en el contructor
 		
 		//Todo lo mismp con direccion 
+		
+
+		
+		
+		Set<Direccione> set2 = new HashSet <Direccione>(); 
+
 		
 		
 		
@@ -105,38 +115,33 @@ public class ServImpl implements UserService {
 		Telefono tel1 = new Telefono(su.getIdtelefonos1(),su.getTelefono1(),p);//parseo int a String con los tres telefonos o cambiar en superusuario el telefono de int a string  y añadir 
 		Telefono tel2 = new Telefono(su.getIdtelefonos2(),su.getTelefono2(),p);
 		Telefono tel3 = new Telefono(su.getIdtelefonos3(),su.getTelefono3(),p);
-		set.add(tel1);
-		set.add(tel2);
-		set.add(tel3); 
+		if( tel1.getTelefono() !="" ){
+			set.add(tel1);
+		}
+		
+		if( tel2.getTelefono() != ""){
+			set.add(tel2);
+		}
+		
+		if( tel3.getTelefono() != ""){
+			set.add(tel3);
+		} 
 		Direccione dir1 = new Direccione(su.getIddirecciones1(),su.getCodPostal1(),su.getDireccion1(),su.getLocalidad1(),su.getProvincia1(),p);  
 		Direccione dir2 = new Direccione(su.getIddirecciones2(),su.getCodPostal2(),su.getDireccion2(),su.getLocalidad2(),su.getProvincia2(),p); 
 		Direccione dir3 = new Direccione(su.getIddirecciones3(),su.getCodPostal3(),su.getDireccion3(),su.getLocalidad3(),su.getProvincia3(),p); 
-		set2.add(dir1);
-		set2.add(dir2);
-		set2.add(dir3); 
-		p.setIdpersonas(su.getIdpersonas());
-		/*if (p.getIdpersonas()==0){
-			Persona persona2=new Persona();
-			persona2.setIdpersonas(0);
-			persona2.setNombre("nombreInconfundible");
-			persona2.setApellido1("");
-			persona2.setApellido2("");
-			persona2.setDni("");
-			persona2.setFechaNacimiento(date);
-			Empleado empleado=new Empleado();
-			empleado.setIdempleados(0);
-			empleado.setCodEmpleado("");
-			empleado.setCategoria(categoria);
-			empleado.setDepartamento(dep);
-			empleado.setSalario("");
-			empleado.setPersona(persona2);
-			persona2.setEmpleado(empleado);
-			logger.info("intentando guardar persona2");
-			datos.save(persona2);
-			logger.info("persona2 guardada");
-			p.setIdpersonas(datos.getID("nombreInconfundible"));
+		if ( dir1.getCodPostal() != "" ){
+			set2.add(dir1);
 		}
-		*/
+		
+		if ( dir2.getCodPostal() != "" ){
+			set2.add(dir2);
+		}
+
+		if ( dir3.getCodPostal() != "" ){
+			set2.add(dir3);
+		}		
+		p.setIdpersonas(su.getIdpersonas());
+		
 		logger.info("intentando guardar persona");
 		datos.saveOrUpdate(p);		
 	}	

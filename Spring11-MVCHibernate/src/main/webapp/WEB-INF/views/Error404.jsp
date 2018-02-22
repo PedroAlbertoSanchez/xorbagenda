@@ -49,7 +49,6 @@
             Bootstrap theme designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
           </div>
         </div>
-
       </div>
     </div>
   </footer>
