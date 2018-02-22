@@ -38,7 +38,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` (`idcategorias`, `nombre`, `descripcion`) VALUES (1,'Programador','El currito'),(2,'Analísta','El diagramas'),(3,'Técnico Recursos Humanos','La que me paga'),(4,'Secretaria','La del café'),(5,'Recepcionista','El del café'),(6,'Master del Universo','El amo');
+INSERT INTO `categorias` (`idcategorias`, `nombre`, `descripcion`) VALUES (1,'Programador','El currito'),(2,'Analista','El diagramas'),(3,'Tecnico Recursos Humanos','La que me paga'),(4,'Secretaria','La del café'),(5,'Recepcionista','El del café'),(6,'Master del Universo','El amo');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +121,7 @@ CREATE TABLE `departamentos` (
 
 LOCK TABLES `departamentos` WRITE;
 /*!40000 ALTER TABLE `departamentos` DISABLE KEYS */;
-INSERT INTO `departamentos` (`iddepartamento`, `nombre`) VALUES (1,'RRHH'),(2,'Informática'),(3,'Logística'),(4,'Dirección');
+INSERT INTO `departamentos` (`iddepartamento`, `nombre`) VALUES (1,'RRHH'),(2,'Informatica'),(3,'Logistica'),(4,'Direccion');
 /*!40000 ALTER TABLE `departamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
