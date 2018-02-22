@@ -105,8 +105,8 @@
 
 				<h3 class="subs-title text-center">Detalle del contacto</h3>
 				<!-- comendtado por mi <div class="w3l_banner_nav_right"> tabla de abajo <table border="1">-->
-				<div class="tablaIndex" >
-				<table border="3px">
+				
+				<table class="noelia" border="3px">
 					<tr>
 						<th>Nombre</th>
 						<th>Apellido 1</th>
@@ -141,7 +141,7 @@
 						</td>
 					</tr>
 				</table>
-				</div>
+				
 			</div>
 		</div>
 		</section>

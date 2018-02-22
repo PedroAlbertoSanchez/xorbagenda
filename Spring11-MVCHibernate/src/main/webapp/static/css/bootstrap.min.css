@@ -173,34 +173,20 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	
 }
 /* desde aqui tabla */ 
-table.tableIndex {
-	 
+
+.noelia{
 	width: 100%;
-   border: 1000px solid #000;
-	
+   border: 3px solid #000;
 }
-
-.thIndex {
+.noelia td, .noelia th{
 	
-	 width: 25%;
-   text-align: left;
-   vertical-align: top;
-   border: 1px solid #000;
-   border-spacing: 0;
-   padding: 0.9em;
-	
-}
-
-
-.tdIndex {
-   width: 25%;
+	   width: 25%;
    text-align: left;
    vertical-align: top;
    border: 1px solid #000;
    border-spacing: 0;
    padding: 0.9em;
 }
-
 
 /* hasta aqui tabla*/ 
 input {
